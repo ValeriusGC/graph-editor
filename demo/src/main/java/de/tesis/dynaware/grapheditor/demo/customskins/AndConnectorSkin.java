@@ -1,27 +1,22 @@
 /*
  * Copyright (C) 2005 - 2014 by TESIS DYNAware GmbH
  */
-package de.tesis.dynaware.grapheditor.core.skins.defaults;
-
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package de.tesis.dynaware.grapheditor.demo.customskins;
 
 import de.tesis.dynaware.grapheditor.GConnectorSkin;
 import de.tesis.dynaware.grapheditor.GConnectorStyle;
 import de.tesis.dynaware.grapheditor.core.connectors.DefaultConnectorTypes;
-import de.tesis.dynaware.grapheditor.core.skins.defaults.utils.AnimatedColor;
-import de.tesis.dynaware.grapheditor.core.skins.defaults.utils.ColorAnimationUtils;
 import de.tesis.dynaware.grapheditor.model.GConnector;
 import javafx.css.PseudoClass;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
-import javafx.util.Duration;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The default connector skin.
@@ -31,14 +26,12 @@ import javafx.util.Duration;
  * connector does not have one of these types, it will be set to <b>left-input</b>.
  * </p>
  */
-public class DefaultConnectorSkin extends GConnectorSkin {
+public class AndConnectorSkin extends GConnectorSkin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultConnectorSkin.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AndConnectorSkin.class);
 
     private static final String STYLE_CLASS_BASE = "tree-input-connector";
     private static final String STYLE_CLASS_BACKGROUND = "default-node-background";
-    private static final String NUMBER_FIRST_COMMAND = "00F4";
-    private static final String NUMBER_NODE = "12";
 
     private static final PseudoClass PSEUDO_CLASS_ALLOWED = PseudoClass.getPseudoClass("allowed");
     private static final PseudoClass PSEUDO_CLASS_FORBIDDEN = PseudoClass.getPseudoClass("forbidden");
@@ -55,18 +48,16 @@ public class DefaultConnectorSkin extends GConnectorSkin {
     //Creating a Text object
     private final Text text = new Text();
     private static int count = 1;
+    private static int countNode = 1;
     private final Rectangle rectangle = new Rectangle();
     private final Circle circle = new Circle(RADIUS);
-
-    private final AnimatedColor animatedColorAllowed;
-    private final AnimatedColor animatedColorForbidden;
 
     /**
      * Creates a new default connector skin instance.
      *
      * @param connector the {@link GConnector} the skin is being created for
      */
-    public DefaultConnectorSkin(final GConnector connector) {
+    public AndConnectorSkin(final GConnector connector) {
 
         super(connector);
 
@@ -77,7 +68,6 @@ public class DefaultConnectorSkin extends GConnectorSkin {
 
         root.setPickOnBounds(false);
 
-
         if (getItem().getId() != null && (getItem().getId().equals("buttom")
                 || getItem().getId().equals("top"))) {
             rectangle.setManaged(false);
@@ -86,11 +76,12 @@ public class DefaultConnectorSkin extends GConnectorSkin {
             rectangle.setWidth(60);
             rectangle.setHeight(15);
             if (getItem().getId().equals("buttom")) {
-                text.setText(NUMBER_NODE);
+                text.setText(String.valueOf(countNode));
+                countNode++;
                 rectangle.setY(-12);
                 text.setX(rectangle.getX() + 25);
             } else {
-                text.setText(NUMBER_FIRST_COMMAND);
+                text.setText("00" + String.valueOf(getItem().getParent().getConnectors().size()-1));
                 rectangle.setY(12);
                 text.setY(rectangle.getY() + 12);
                 text.setX(rectangle.getX() + 11);
@@ -116,15 +107,16 @@ public class DefaultConnectorSkin extends GConnectorSkin {
                 text.setText("00" + count + "                   " + "di" + count);
                 text.setX(rectangle.getX()-92);
             }
+            getItem().setProperty("di" + count);
+            getItem().setCommand("00" + (countNode + 1 + count));
             count++;
             text.setY(rectangle.getY());
-
+            getItem().setParam("00" + (count -1));
             root.getChildren().add(text);
             root.getChildren().add(line);
             root.getChildren().add(rectangle);
         }
-        animatedColorAllowed = new AnimatedColor(ALLOWED, Color.WHITE, Color.MEDIUMSEAGREEN, Duration.millis(500));
-        animatedColorForbidden = new AnimatedColor(FORBIDDEN, Color.WHITE, Color.TOMATO, Duration.millis(500));
+
     }
 
 
@@ -149,19 +141,16 @@ public class DefaultConnectorSkin extends GConnectorSkin {
         switch (style) {
 
             case DEFAULT:
-                ColorAnimationUtils.removeAnimation(circle);
                 circle.pseudoClassStateChanged(PSEUDO_CLASS_FORBIDDEN, false);
                 circle.pseudoClassStateChanged(PSEUDO_CLASS_ALLOWED, false);
                 break;
 
             case DRAG_OVER_ALLOWED:
-                ColorAnimationUtils.animateColor(circle, animatedColorAllowed);
                 circle.pseudoClassStateChanged(PSEUDO_CLASS_FORBIDDEN, false);
                 circle.pseudoClassStateChanged(PSEUDO_CLASS_ALLOWED, true);
                 break;
 
             case DRAG_OVER_FORBIDDEN:
-                ColorAnimationUtils.animateColor(circle, animatedColorForbidden);
                 circle.pseudoClassStateChanged(PSEUDO_CLASS_FORBIDDEN, true);
                 circle.pseudoClassStateChanged(PSEUDO_CLASS_ALLOWED, false);
                 break;

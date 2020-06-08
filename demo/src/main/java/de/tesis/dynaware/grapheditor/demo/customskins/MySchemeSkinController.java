@@ -2,8 +2,6 @@ package de.tesis.dynaware.grapheditor.demo.customskins;
 
 import de.tesis.dynaware.grapheditor.*;
 import de.tesis.dynaware.grapheditor.core.connectors.DefaultConnectorTypes;
-import de.tesis.dynaware.grapheditor.core.skins.defaults.DefaultConnectorSkin;
-import de.tesis.dynaware.grapheditor.core.skins.defaults.DefaultNodeSkin;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.demo.selections.SelectionCopier;
 import de.tesis.dynaware.grapheditor.model.*;
@@ -13,69 +11,74 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * Responsible for default-skin specific logic in the graph editor demo.
- */
-public class DefaultSkinController implements SkinController {
+public class MySchemeSkinController implements SkinController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MySchemeSkinController.class);
+    private static final int MAX_CONNECTOR_COUNT = 10;
+    private final GraphEditor graphEditor;
+    private final GraphEditorContainer graphEditorContainer;
 
-    protected static final int NODE_INITIAL_X = 19;
-    protected static final int NODE_INITIAL_Y = 19;
-
-    protected final GraphEditor graphEditor;
-    protected final GraphEditorContainer graphEditorContainer;
-
-    private static final int MAX_CONNECTOR_COUNT = 5;
-
-    /**
-     * Creates a new {@link DefaultSkinController} instance.
-     *
-     * @param graphEditor the graph editor on display in this demo
-     * @param graphEditorContainer the graph editor container on display in this demo
-     */
-    public DefaultSkinController(final GraphEditor graphEditor, final GraphEditorContainer graphEditorContainer) {
-
+    public MySchemeSkinController(GraphEditor graphEditor, GraphEditorContainer graphEditorContainer) {
         this.graphEditor = graphEditor;
         this.graphEditorContainer = graphEditorContainer;
     }
 
     @Override
-    public void activate()
-    {
-        graphEditor.setConnectorSkinFactory(this::createSkin);
+    public void addNode(double currentZoomFactor) {
+        double windowXOffset = graphEditorContainer.getContentX() / currentZoomFactor;
+        double windowYOffset = graphEditorContainer.getContentY() / currentZoomFactor;
+
+        GNode node = GraphFactory.eINSTANCE.createGNode();
+        // TODO centralize
+        node.setY(graphEditorContainer.getMouseEvent().getSceneY() + windowYOffset);
+
+        GConnector rightOutput = GraphFactory.eINSTANCE.createGConnector();
+        node.getConnectors().add(rightOutput);
+
+        GConnector leftInput = GraphFactory.eINSTANCE.createGConnector();
+        node.getConnectors().add(leftInput);
+
+        GConnector leftInputNext = GraphFactory.eINSTANCE.createGConnector();
+        node.getConnectors().add(leftInputNext);
+
+        leftInputNext.setId("invers");
+
+        GConnector top = GraphFactory.eINSTANCE.createGConnector();
+        node.getConnectors().add(top);
+
+        top.setId("top");
+
+        GConnector buttom = GraphFactory.eINSTANCE.createGConnector();
+        node.getConnectors().add(buttom);
+
+        buttom.setId("buttom");
+
+        node.setX(graphEditorContainer.getMouseEvent().getSceneX() + windowXOffset);
+
+        rightOutput.setType(DefaultConnectorTypes.RIGHT_OUTPUT);
+        leftInput.setType(DefaultConnectorTypes.LEFT_INPUT);
+        leftInputNext.setType(DefaultConnectorTypes.LEFT_INPUT);
+        top.setType(DefaultConnectorTypes.TOP_OUTPUT);
+        buttom.setType(DefaultConnectorTypes.BOTTOM_OUTPUT);
+
+        Commands.addNode(graphEditor.getModel(), node);
+    }
+
+    @Override
+    public void activate() {
         graphEditor.setNodeSkinFactory(this::createSkin);
+        graphEditor.setConnectorSkinFactory(this::createSkin);
         graphEditorContainer.getMinimap().setConnectionFilter(c -> true);
     }
 
     private GNodeSkin createSkin(GNode gNode) {
-        return new DefaultNodeSkin(gNode);
+        return new AndNodeSkin(gNode);
     }
 
     private GConnectorSkin createSkin(GConnector gConnector){
-        return  new DefaultConnectorSkin(gConnector);
-    }
-
-    @Override
-    public void addNode(final double currentZoomFactor) {
-
-        final double windowXOffset = graphEditorContainer.getContentX() / currentZoomFactor;
-        final double windowYOffset = graphEditorContainer.getContentY() / currentZoomFactor;
-
-        final GNode node = GraphFactory.eINSTANCE.createGNode();
-        node.setY(NODE_INITIAL_Y + windowYOffset);
-
-        final GConnector rightOutput = GraphFactory.eINSTANCE.createGConnector();
-        node.getConnectors().add(rightOutput);
-
-        final GConnector leftInput = GraphFactory.eINSTANCE.createGConnector();
-        node.getConnectors().add(leftInput);
-
-        node.setX(NODE_INITIAL_X + windowXOffset);
-
-        rightOutput.setType(DefaultConnectorTypes.RIGHT_OUTPUT);
-        leftInput.setType(DefaultConnectorTypes.LEFT_INPUT);
-
-        Commands.addNode(graphEditor.getModel(), node);
+        return  new AndConnectorSkin(gConnector);
     }
 
     /**

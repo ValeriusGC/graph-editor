@@ -44,7 +44,6 @@
     -fx-font-weight: bold;
 }
 
-
 .graph-editor-scroll-bar:vertical .thumb {
 	-fx-background-insets: 0 2 0 0;
 }
@@ -89,7 +88,7 @@
 }
 
 .default-node-background {
-	-fx-fill: rgb(249,247,250);
+	-fx-fill: rgb(196,196,196);
 	-fx-opacity: 0.9;
 	-fx-stroke: null;
 	-fx-stroke-type: inside;
@@ -99,7 +98,7 @@
 }
 
 .default-node-background:selected {
-	-fx-fill: derive(rgb(249,247,250), -5%);
+	-fx-fill: derive(rgb(196,196,196), -5%);
 }
 
 .default-node-selection-halo {
@@ -174,6 +173,28 @@
 .default-connection-background {
 	-fx-stroke-width: 7;
 	-fx-stroke: transparent;
+}
+
+.tree-input-connector, .tree-output-connector {
+	-fx-stroke: darkslategrey;
+	-fx-stroke-type: inside;
+	-fx-fill: white;
+	-fx-stroke-width: 1;
+	-fx-effect: dropshadow(one-pass-box, rgba(180, 180, 180), 5, 0, 1, 1);
+}
+
+.tree-input-connector:hover, .tree-input-connector:pressed, .tree-output-connector:hover, .tree-output-connector:pressed {
+	-fx-stroke-width: 2;
+}
+
+.tree-input-connector:allowed, .tree-output-connector:allowed {
+	-fx-stroke-width: 2;
+	-fx-fill: mediumseagreen;
+}
+
+.tree-input-connector:forbidden, .tree-output-connector:forbidden {
+	-fx-stroke-width: 2;
+	-fx-fill: tomato;
 }
 
 .default-connection-hover-effect {

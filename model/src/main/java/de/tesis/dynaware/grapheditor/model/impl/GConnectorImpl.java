@@ -8,6 +8,7 @@ import de.tesis.dynaware.grapheditor.model.GNode;
 import de.tesis.dynaware.grapheditor.model.GraphPackage;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -53,6 +54,10 @@ public class GConnectorImpl extends MinimalEObjectImpl.Container implements GCon
 	 */
 	protected static final String ID_EDEFAULT = null;
 
+	protected static final String PROPERTY_EDEFAULT = null;
+	protected static final String PARAM_EDEFAULT = null;
+	protected static final String COMMAND_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,6 +67,10 @@ public class GConnectorImpl extends MinimalEObjectImpl.Container implements GCon
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	protected String property = PROPERTY_EDEFAULT;
+	protected String param = PARAM_EDEFAULT;
+	protected String command = COMMAND_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -193,6 +202,36 @@ public class GConnectorImpl extends MinimalEObjectImpl.Container implements GCon
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GCONNECTOR__ID, oldId, id));
 	}
 
+	@Override
+	public void setProperty(String value) {
+		property = value;
+	}
+
+	@Override
+	public void setParam(String value) {
+		param = value;
+	}
+
+	@Override
+	public String getProperty() {
+		return property;
+	}
+
+	@Override
+	public String getParam() {
+		return param;
+	}
+
+	@Override
+	public void setCommand(String value) {
+		command = value;
+	}
+
+	@Override
+	public String getCommand() {
+		return command;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -201,6 +240,7 @@ public class GConnectorImpl extends MinimalEObjectImpl.Container implements GCon
 	public String getType() {
 		return type;
 	}
+
 
 	/**
 	 * <!-- begin-user-doc -->

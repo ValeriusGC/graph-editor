@@ -41,6 +41,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
+
+	/**
+	 * Version of model, by default 1
+	 */
+	private int version = 1;
+
+	/**
+	 * Last saved version by default 1, changes were not made
+	 */
+	private int persistedVersion = 1;
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -225,6 +235,21 @@ public class GModelImpl extends MinimalEObjectImpl.Container implements GModel {
 		contentHeight = newContentHeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GMODEL__CONTENT_HEIGHT, oldContentHeight, contentHeight));
+	}
+
+	@Override
+	public boolean isUpdated() {
+		return version != persistedVersion;
+	}
+
+	@Override
+	public void bump() {
+		version++;
+	}
+
+	@Override
+	public void persist(){
+		persistedVersion = version;
 	}
 
 	/**

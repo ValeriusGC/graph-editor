@@ -6,6 +6,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import java.util.List;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>GConnector</b></em>'.
@@ -43,6 +45,7 @@ public interface GConnector extends EObject {
 	 * @model id="true"
 	 * @generated
 	 */
+
 	String getId();
 
 	/**
@@ -54,6 +57,17 @@ public interface GConnector extends EObject {
 	 * @generated
 	 */
 	void setId(String value);
+
+	void setProperty(String value);
+	void setParam(String value);
+
+	String getProperty();
+
+	String getParam();
+
+	void setCommand(String value);
+
+	String getCommand();
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.

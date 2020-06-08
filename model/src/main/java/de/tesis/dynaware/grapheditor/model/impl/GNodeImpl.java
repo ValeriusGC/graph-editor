@@ -150,7 +150,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double HEIGHT_EDEFAULT = 101.0;
+	protected static final double HEIGHT_EDEFAULT = 351.0;
 
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.

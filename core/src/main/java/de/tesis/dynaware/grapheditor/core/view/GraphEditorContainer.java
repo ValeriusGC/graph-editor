@@ -8,6 +8,7 @@ import de.tesis.dynaware.grapheditor.model.GModel;
 import de.tesis.dynaware.grapheditor.window.AutoScrollingWindow;
 import de.tesis.dynaware.grapheditor.window.GraphEditorMinimap;
 import javafx.beans.value.ChangeListener;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 
 
@@ -56,6 +57,7 @@ public class GraphEditorContainer extends AutoScrollingWindow
     private GraphEditor graphEditor;
     private final ChangeListener<GModel> modelChangeListener = (observable, oldValue, newValue) -> modelChanged(newValue);
 
+    private MouseEvent mouseEvent;
     /**
      * Creates a new {@link GraphEditorContainer}.
      */
@@ -129,6 +131,13 @@ public class GraphEditorContainer extends AutoScrollingWindow
         }
     }
 
+    public MouseEvent getMouseEvent() {
+        return mouseEvent;
+    }
+
+    public void setMouseEvent(MouseEvent mouseEvent) {
+        this.mouseEvent = mouseEvent;
+    }
     /**
      * Returns the {@link GraphEditorMinimap}
      *

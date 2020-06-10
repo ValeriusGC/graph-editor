@@ -20,7 +20,7 @@ import javafx.stage.Window;
  * Helper class for crudely loading {@link GModel} states to and from XML.
  *
  * <p>
- * Not part of the graph editor library, only used in the {@link GraphEditorDemo} application.
+ * Not part of the graph editor library, only used in the {@link GraphEditorDemoOld} application.
  * </p>
  */
 public class GraphEditorPersistence {

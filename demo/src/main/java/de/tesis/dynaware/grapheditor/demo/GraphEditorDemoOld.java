@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 /**
  * A demo application to show uses of the {@link GraphEditor} library.
  */
-public class GraphEditorDemo extends Application {
+public class GraphEditorDemoOld extends Application {
 
     public static Stage primary;
 

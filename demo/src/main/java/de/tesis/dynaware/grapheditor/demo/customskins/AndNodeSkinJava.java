@@ -6,7 +6,7 @@ package de.tesis.dynaware.grapheditor.demo.customskins;
 import de.tesis.dynaware.grapheditor.GConnectorSkin;
 import de.tesis.dynaware.grapheditor.GNodeSkin;
 import de.tesis.dynaware.grapheditor.core.connectors.DefaultConnectorTypes;
-import de.tesis.dynaware.grapheditor.demo.GraphEditorDemo;
+import de.tesis.dynaware.grapheditor.demo.GraphEditorDemoOld;
 import de.tesis.dynaware.grapheditor.demo.GraphEditorException;
 import de.tesis.dynaware.grapheditor.demo.NodeProperties;
 import de.tesis.dynaware.grapheditor.demo.Property;
@@ -48,9 +48,9 @@ import java.util.List;
  * Connectors are evenly spaced along the sides of the node according to their type.
  * </p>
  */
-public class AndNodeSkin extends GNodeSkin {
+public class AndNodeSkinJava extends GNodeSkin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AndNodeSkin.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AndNodeSkinJava.class);
 
     public static final String AND_NODE_TYPE = "and-node";
 
@@ -91,7 +91,7 @@ public class AndNodeSkin extends GNodeSkin {
      *
      * @param node the {@link GNode} the skin is being created for
      */
-    public AndNodeSkin(final GNode node) {
+    public AndNodeSkinJava(final GNode node) {
 
         super(node);
 
@@ -142,7 +142,7 @@ public class AndNodeSkin extends GNodeSkin {
                             Property.PROPERTIES_NODE_WIDTH.getInt(),
                             Property.PROPERTIES_NODE_HEIGHT.getInt()));
                     stage.setResizable(false);
-                    stage.initOwner(GraphEditorDemo.primary);
+                    stage.initOwner(GraphEditorDemoOld.primary);
                     stage.show();
                 } catch (IOException e) {
                     LOGGER.error("could nod node properties", e);

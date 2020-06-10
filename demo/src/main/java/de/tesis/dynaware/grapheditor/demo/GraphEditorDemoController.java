@@ -46,7 +46,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Controller for the {@link GraphEditorDemo} application.
+ * Controller for the {@link GraphEditorDemoOld} application.
  */
 public class GraphEditorDemoController {
 
@@ -164,7 +164,7 @@ public class GraphEditorDemoController {
 
         root.setOnMouseMoved(mouseEvent -> graphEditorContainer.setMouseEvent(mouseEvent));
 
-        GraphEditorDemo.primary.setOnCloseRequest(shutdownHook());
+        GraphEditorDemoOld.primary.setOnCloseRequest(shutdownHook());
     }
 
     @FXML
@@ -214,7 +214,7 @@ public class GraphEditorDemoController {
     @FXML
     public void exit() {
         boolean saved = handleUnsavedSchema(new WindowEvent(
-                GraphEditorDemo.primary,
+                GraphEditorDemoOld.primary,
                 WindowEvent.WINDOW_CLOSE_REQUEST));
         if (!saved) {
             Platform.exit();
@@ -473,7 +473,7 @@ public class GraphEditorDemoController {
             stage.setTitle("Preferences");
             stage.setScene(new Scene(root, Property.PREFERENCES_WIDTH.getInt(), Property.PREFERENCES_HEIGHT.getInt()));
             stage.setResizable(false);
-            stage.initOwner(GraphEditorDemo.primary);
+            stage.initOwner(GraphEditorDemoOld.primary);
             stage.show();
         } catch (IOException e) {
             LOGGER.error("could nod load preferences", e);
@@ -497,7 +497,7 @@ public class GraphEditorDemoController {
                 var stage = new Stage();
                 stage.setTitle("Nodes");
                 stage.setScene(new Scene(root, Property.NODES_VIEW_WIDTH.getInt(), Property.NODES_VIEW_HEIGHT.getInt()));
-                stage.initOwner(GraphEditorDemo.primary);
+                stage.initOwner(GraphEditorDemoOld.primary);
                 stage.show();
             } catch (IOException e) {
                 LOGGER.error("could nod load node list", e);

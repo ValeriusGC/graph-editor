@@ -12,6 +12,9 @@ module fx.graph.editor.demo
     requires org.eclipse.emf.edit;
     requires org.slf4j;
     requires kotlin.stdlib;
+    requires kotlinx.coroutines.core;
+    requires io.reactivex.rxjava2;
+    requires kotlinx.coroutines.rx2;
 
     exports de.tesis.dynaware.grapheditor.demo to javafx.graphics, javafx.fxml;
     opens de.tesis.dynaware.grapheditor.demo to javafx.fxml, javafx.base;

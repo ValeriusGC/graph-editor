@@ -6,26 +6,20 @@ package de.tesis.dynaware.grapheditor.demo;
 import de.tesis.dynaware.grapheditor.GraphEditor;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.demo.utils.AwesomeIcon;
+import de.tesis.dynaware.grapheditor.demo.vvk.Model;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.eclipse.emf.ecore.resource.Resource;
 
-import java.io.InputStream;
-import java.net.URL;
+import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.f;
+import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.sayHelloSingle;
 
 /**
  * A VVK application to show uses of the {@link GraphEditor} library.
@@ -130,8 +124,18 @@ public class GraphEditorDemoVvk extends Application {
 
 //        btn.setStyle("minimapButton");
 //        btn.setText("Say 'Hello World'");
-        btn.setOnAction(event -> System.out.println("Hello World!"));
+        final Integer v1 = f(10);
+        final String v2 = f("LALALA");
+        final String[] s = {"-"};
+        m.observe().collect((a,b)-> {
+            return System.out.println("");
+        });
+        btn.setOnAction(event -> System.out.printf("Hello World! %d, %s, %s\n", v1, v2,
+                sayHelloSingle().blockingGet()));
         return btn;
     }
+
+    final Model m = new Model();
+
 }
 

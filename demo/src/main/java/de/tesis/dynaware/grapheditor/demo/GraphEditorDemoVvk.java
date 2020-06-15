@@ -127,11 +127,15 @@ public class GraphEditorDemoVvk extends Application {
         final Integer v1 = f(10);
         final String v2 = f("LALALA");
         final String[] s = {"-"};
-        m.observe().collect((a,b)-> {
-            return System.out.println("");
+        m.getOnReady().subscribe(System.out::println);
+        btn.setOnAction(event -> {
+            System.out.println("BEGIN");
+            m.start();
+            System.out.printf("Hello World! %d, %s, %s\n", v1, v2,
+                    sayHelloSingle().blockingGet());
+            System.out.println("END");
         });
-        btn.setOnAction(event -> System.out.printf("Hello World! %d, %s, %s\n", v1, v2,
-                sayHelloSingle().blockingGet()));
+        System.out.println("-----");
         return btn;
     }
 

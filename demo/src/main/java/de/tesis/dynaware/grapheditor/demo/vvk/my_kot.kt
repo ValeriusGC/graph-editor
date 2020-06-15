@@ -4,10 +4,8 @@ import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import javafx.application.Application.launch
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.rx2.rxFlowable
@@ -25,26 +23,27 @@ abstract class UseCase<Type, Params> {
 class NoParams
 
 suspend fun sayHello(): String {
-    delay(5000)
+    delay(1000)
     return "Hi there"
 }
 
 fun sayHelloSingle(): Single<String> = rxSingle { sayHello() }
 
-fun sayHelloSingle2(): Flow<String> = rxFlowable<> { sayHello() }
-
 
 class Model {
     val obs = BehaviorSubject.createDefault(22);
-    @ExperimentalCoroutinesApi
-    val channel = ConflatedBroadcastChannel<String>()
+    val onReady = PublishSubject.create<String>()
 
-    suspend fun start() {
-        delay(2000)
-        channel.send("aaa");
+    fun start() {
+        GlobalScope.launch {
+            (1..10).forEach {
+                onReady.onNext("$it")
+                val job = GlobalScope.launch {
+                    delay(600)
+                }
+                job.join()
+            }
+        }
     }
 
-    fun observe(): Flow<String> {
-        return channel.asFlow();
-    }
 }

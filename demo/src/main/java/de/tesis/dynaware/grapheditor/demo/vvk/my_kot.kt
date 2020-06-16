@@ -20,15 +20,15 @@ public fun <T> f(v: T) : T {
 abstract class UseCase<Type, Params> {
     abstract fun call(params: Params) : Type
 }
+
 class NoParams
 
 suspend fun sayHello(): String {
-    delay(1000)
+    delay(2000)
     return "Hi there"
 }
 
 fun sayHelloSingle(): Single<String> = rxSingle { sayHello() }
-
 
 class Model {
     val obs = BehaviorSubject.createDefault(22);
@@ -37,7 +37,7 @@ class Model {
     fun start() {
         GlobalScope.launch {
             (1..10).forEach {
-                onReady.onNext("$it")
+                obs.onNext(it)
                 val job = GlobalScope.launch {
                     delay(600)
                 }
@@ -45,5 +45,4 @@ class Model {
             }
         }
     }
-
 }

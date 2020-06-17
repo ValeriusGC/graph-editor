@@ -6,10 +6,7 @@ package de.tesis.dynaware.grapheditor.demo;
 import de.tesis.dynaware.grapheditor.GraphEditor;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.demo.utils.AwesomeIcon;
-import de.tesis.dynaware.grapheditor.demo.vvk.GraphEditorDemoModel;
-import de.tesis.dynaware.grapheditor.demo.vvk.GraphEditorDemoPresenter;
-import de.tesis.dynaware.grapheditor.demo.vvk.GraphEditorDemoView;
-import de.tesis.dynaware.grapheditor.demo.vvk.Model;
+import de.tesis.dynaware.grapheditor.demo.vvk.*;
 import io.reactivex.disposables.Disposable;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -40,8 +37,8 @@ public class GraphEditorDemoVvk extends Application {
 //    GraphEditorContainer cnt;
 
     GraphEditorDemoModel model;
-    GraphEditorDemoPresenter presenter;
-    GraphEditorDemoView view;
+    IPresenter presenter;
+    IView view;
 
 
     @Override

@@ -13,14 +13,15 @@ import javafx.scene.layout.VBox;
 import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.f;
 import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.sayHelloSingle;
 
-public class GraphEditorDemoView implements IView{
+public class GraphEditorDemoView implements IView {
 
-    GraphEditorDemoPresenter presenter;
+    IPresenter presenter;
+
     GraphEditorContainer container;
 
     private AnchorPane main;
 
-    public GraphEditorDemoView(GraphEditorDemoPresenter presenter) {
+    public GraphEditorDemoView(IPresenter presenter) {
         this.presenter = presenter;
         container = new GraphEditorContainer();
         container.setMaxHeight(Integer.MAX_VALUE);
@@ -28,6 +29,12 @@ public class GraphEditorDemoView implements IView{
         presenter.setView(this);
     }
 
+    @Override
+    public GraphEditorContainer getContainer() {
+        return container;
+    }
+
+    @Override
     public Parent getMain() {
         main = new AnchorPane();
         //final AnchorPane ap = new AnchorPane();

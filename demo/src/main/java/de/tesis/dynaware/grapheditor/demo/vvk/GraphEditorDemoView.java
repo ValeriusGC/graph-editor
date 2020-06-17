@@ -2,22 +2,21 @@ package de.tesis.dynaware.grapheditor.demo.vvk;
 
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.demo.utils.AwesomeIcon;
-import io.reactivex.disposables.Disposable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.f;
-import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.sayHelloSingle;
+import java.util.function.Consumer;
 
 public class GraphEditorDemoView implements IView {
 
     IPresenter presenter;
-
     GraphEditorContainer container;
+
 
     private AnchorPane main;
 
@@ -65,23 +64,58 @@ public class GraphEditorDemoView implements IView {
         return b;
     }
 
+
+    MenuItem addConnector;
+
     public Node menuBar() {
-        Menu menu = new Menu("Файл");
-        MenuItem item1 = new MenuItem("Открыть схему");
+        Menu file = new Menu("Файл");
+        MenuItem open = new MenuItem("Открыть схему");
+        open.setOnAction(v -> presenter.openScheme());
+        open.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
+        file.getItems().add(open);
+
+        MenuItem save = new MenuItem("Сохранить схему");
+        save.setOnAction(v -> presenter.saveScheme());
+        save.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        //save.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+S"));
+        file.getItems().add(save);
+
+        MenuItem clear = new MenuItem("Очистить все");
+        clear.setOnAction(v -> presenter.clearScheme());
+        file.getItems().add(clear);
 //        item1.setOnAction(a -> ctrl.load());
-        MenuItem item2 = new MenuItem("Item 2");
+
         SeparatorMenuItem separator = new SeparatorMenuItem();
+        file.getItems().add(separator);
 
-        menu.getItems().add(item1);
-        menu.getItems().add(separator);
-        menu.getItems().add(item2);
+        MenuItem exit = new MenuItem("Выход");
+        clear.setOnAction(v -> presenter.exit());
+        save.setAccelerator(KeyCombination.keyCombination("Alt+X"));
+        file.getItems().add(exit);
 
+        //
+        Menu editor = new Menu("Редактор");
+        MenuItem undo = new MenuItem("Отмена");
+        undo.setOnAction(v -> presenter.undo());
+        undo.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
+        editor.getItems().add(undo);
+        MenuItem redo = new MenuItem("Повтор");
+        redo.setOnAction(v -> presenter.redo());
+        redo.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+Z"));
+        editor.getItems().add(redo);
+
+        //
+        Menu actions = new Menu("Действия");
+        addConnector = new MenuItem("Добавить коннектор");
+        addConnector.setOnAction(v -> presenter.undo());
+        addConnector.setDisable(true);
+//        addConnector.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
+        actions.getItems().add(addConnector);
 
         MenuBar node = new MenuBar();
-        node.getMenus().add(menu);
+        node.getMenus().addAll(file, editor, actions);
         return node;
     }
-
 
     public ToggleButton btn() {
         ToggleButton btn = new ToggleButton();
@@ -120,9 +154,16 @@ public class GraphEditorDemoView implements IView {
         return btn;
     }
 
-
     @Override
     public void onDebugMessage(String message) {
         System.out.println(message);
+    }
+
+    @Override
+    public void onNodeSelectionChanged(boolean isSelected) {
+        System.out.println("GraphEditorDemoView.onNodeSelectionChanged: " + isSelected);
+        if(addConnector != null){
+            addConnector.setDisable(!isSelected);
+        }
     }
 }

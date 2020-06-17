@@ -7,4 +7,5 @@ public interface IView {
     GraphEditorContainer getContainer();
     Parent getMain();
     void onDebugMessage(String message);
+    void onNodeSelectionChanged(boolean isSelected);
 }

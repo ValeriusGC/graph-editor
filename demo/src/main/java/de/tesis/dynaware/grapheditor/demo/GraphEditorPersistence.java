@@ -25,7 +25,8 @@ import javafx.stage.Window;
  */
 public class GraphEditorPersistence {
 
-    private static final String FILE_EXTENSION = ".myscheme"; //$NON-NLS-1$
+    private static final String FILE_EXTENSION = ".graph"; //$NON-NLS-1$
+    //private static final String FILE_EXTENSION = ".myscheme"; //$NON-NLS-1$
     private static final String CHOOSER_TEXT = "Graph Model Files (*" + FILE_EXTENSION + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 
     private static final String SAMPLE_FILE = "sample" + FILE_EXTENSION; //$NON-NLS-1$

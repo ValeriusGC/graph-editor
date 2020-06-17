@@ -1,24 +1,34 @@
 package de.tesis.dynaware.grapheditor.demo.vvk;
 
+import de.tesis.dynaware.grapheditor.Commands;
 import de.tesis.dynaware.grapheditor.GraphEditor;
 import de.tesis.dynaware.grapheditor.core.DefaultGraphEditor;
 import de.tesis.dynaware.grapheditor.core.skins.defaults.connection.SimpleConnectionSkin;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
+import de.tesis.dynaware.grapheditor.demo.GraphEditorDemoVvk;
 import de.tesis.dynaware.grapheditor.demo.GraphEditorPersistence;
 import de.tesis.dynaware.grapheditor.demo.customskins.DefaultSkinController;
+import de.tesis.dynaware.grapheditor.demo.customskins.MySchemeSkinController;
 import de.tesis.dynaware.grapheditor.demo.customskins.SkinController;
 import de.tesis.dynaware.grapheditor.demo.selections.SelectionCopier;
 import de.tesis.dynaware.grapheditor.model.GModel;
 import de.tesis.dynaware.grapheditor.model.GNode;
 import de.tesis.dynaware.grapheditor.model.GraphFactory;
 import io.reactivex.disposables.Disposable;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.SetChangeListener;
 import javafx.geometry.Side;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
+import javafx.stage.WindowEvent;
 import org.eclipse.emf.ecore.EObject;
 
 import java.util.Map;
+import java.util.Optional;
 
 import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.f;
 import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.sayHelloSingle;
@@ -32,6 +42,7 @@ public class GraphEditorDemoPresenter implements IPresenter {
     private DefaultSkinController defaultSkinController;
     private static final String STYLE_CLASS_TITLED_SKINS = "titled-skins"; //$NON-NLS-1$
     private final GraphEditor graphEditor = new DefaultGraphEditor();
+    private MySchemeSkinController mySchemeSkinController;
     private final SelectionCopier selectionCopier = new SelectionCopier(graphEditor.getSkinLookup(),
             graphEditor.getSelectionManager());
     private final GraphEditorPersistence graphEditorPersistence = new GraphEditorPersistence();
@@ -65,8 +76,10 @@ public class GraphEditorDemoPresenter implements IPresenter {
 
         setDetouredStyle();
 
-        defaultSkinController = new DefaultSkinController(graphEditor, view.getContainer());
-
+//        defaultSkinController = new DefaultSkinController(graphEditor, view.getContainer());
+        mySchemeSkinController = new MySchemeSkinController(graphEditor, view.getContainer());
+        activeSkinController.set(mySchemeSkinController);
+//        activeSkinController.set(defaultSkinController);
         activeSkinController.addListener((observable, oldValue, newValue) -> {
             checkConnectorButtonsToDisable();
         });
@@ -153,19 +166,70 @@ public class GraphEditorDemoPresenter implements IPresenter {
         System.out.println("GraphEditorDemoPresenter.clearScheme");
     }
 
+    private boolean handleUnsavedSchema(WindowEvent event) {
+        boolean itCanBePersisted = Optional.ofNullable(graphEditor.getModel())
+                .map(v -> v.getNodes())
+                .map(nodes -> !nodes.isEmpty())
+                .orElse(false);
+
+        boolean updated = Optional.ofNullable(graphEditor.getModel())
+                .map(GModel::isUpdated)
+                .orElse(false);
+
+        System.out.println("GraphEditorDemoPresenter.handleUnsavedSchema " + itCanBePersisted + ", " + updated);
+        if (itCanBePersisted && updated) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("You have one unsaved schema");
+            alert.setContentText("Do you want to save the open schema before leaving?");
+
+            ButtonType yes = new ButtonType("Yes");
+            ButtonType no = new ButtonType("No");
+            ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(yes, no, cancel);
+
+            ButtonType result = alert.showAndWait().orElse(null);
+            if (result == yes) {
+                graphEditorPersistence.saveToFile(graphEditor);
+            } else if (result == no) {
+                Platform.exit();
+                System.exit(0);
+            } else {
+                event.consume();
+            }
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void exit() {
         System.out.println("GraphEditorDemoPresenter.exit");
+        boolean saved = handleUnsavedSchema(new WindowEvent(
+                GraphEditorDemoVvk.primary,
+                WindowEvent.WINDOW_CLOSE_REQUEST));
+
+        if (!saved) {
+            Platform.exit();
+        }
+
     }
 
     @Override
     public void undo() {
-        System.out.println("GraphEditorDemoPresenter.undo");
+        Commands.undo(graphEditor.getModel());
     }
 
     @Override
     public void redo() {
-        System.out.println("GraphEditorDemoPresenter.redo");
+        Commands.redo(graphEditor.getModel());
+    }
+
+    @Override
+    public void addNode() {
+        final Region v = graphEditor.getView();
+        activeSkinController.get().addNode(v.getLocalToSceneTransform().getMxx());
     }
 
     @Override

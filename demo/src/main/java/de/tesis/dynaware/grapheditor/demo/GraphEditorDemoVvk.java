@@ -35,6 +35,7 @@ public class GraphEditorDemoVvk extends Application {
 
 //    GraphEditorDemoControllerVvk ctrl;
 //    GraphEditorContainer cnt;
+    public static Stage primary;
 
     GraphEditorDemoModel model;
     IPresenter presenter;
@@ -49,6 +50,7 @@ public class GraphEditorDemoVvk extends Application {
 //        cnt.setMaxWidth(Integer.MAX_VALUE);
 //        ctrl = new GraphEditorDemoControllerVvk();
 //        ctrl.initialize(cnt);
+        primary = primaryStage;
 
         model = new GraphEditorDemoModel();
         presenter = new GraphEditorDemoPresenter(model);

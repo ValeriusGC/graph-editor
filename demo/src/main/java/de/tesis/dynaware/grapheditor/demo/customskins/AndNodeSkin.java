@@ -48,9 +48,9 @@ import java.util.List;
  * Connectors are evenly spaced along the sides of the node according to their type.
  * </p>
  */
-public class AndNodeSkinJava extends GNodeSkin {
+public class AndNodeSkin extends GNodeSkin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AndNodeSkinJava.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AndNodeSkin.class);
 
     public static final String AND_NODE_TYPE = "and-node";
 
@@ -91,7 +91,7 @@ public class AndNodeSkinJava extends GNodeSkin {
      *
      * @param node the {@link GNode} the skin is being created for
      */
-    public AndNodeSkinJava(final GNode node) {
+    public AndNodeSkin(final GNode node) {
 
         super(node);
 
@@ -124,6 +124,7 @@ public class AndNodeSkinJava extends GNodeSkin {
         pane.addEventFilter(MouseEvent.MOUSE_DRAGGED, this::filterMouseDragged);
         pane.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
+                System.out.println("AndNodeSkin.AndNodeSkin");
                 try {
                     FXMLLoader loader = new FXMLLoader();
                     NodeProperties controller = new NodeProperties();

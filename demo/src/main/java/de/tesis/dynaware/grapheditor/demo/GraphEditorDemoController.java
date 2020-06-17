@@ -149,11 +149,10 @@ public class GraphEditorDemoController {
 
         setDetouredStyle();
 
-        defaultSkinController = new DefaultSkinController(graphEditor, graphEditorContainer);
-        treeSkinController = new TreeSkinController(graphEditor, graphEditorContainer);
-        titledSkinController = new TitledSkinController(graphEditor, graphEditorContainer);
+//        defaultSkinController = new DefaultSkinController(graphEditor, graphEditorContainer);
+//        treeSkinController = new TreeSkinController(graphEditor, graphEditorContainer);
+//        titledSkinController = new TitledSkinController(graphEditor, graphEditorContainer);
         mySchemeSkinController = new MySchemeSkinController(graphEditor, graphEditorContainer);
-
         activeSkinController.set(mySchemeSkinController);
 
         graphEditor.modelProperty().addListener((w, o, n) -> selectionCopier.initialize(n));

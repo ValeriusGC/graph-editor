@@ -89,8 +89,8 @@ public class GraphEditorDemoView implements IView {
         file.getItems().add(separator);
 
         MenuItem exit = new MenuItem("Выход");
-        clear.setOnAction(v -> presenter.exit());
-        save.setAccelerator(KeyCombination.keyCombination("Alt+X"));
+        exit.setOnAction(v -> presenter.exit());
+        exit.setAccelerator(KeyCombination.keyCombination("Alt+X"));
         file.getItems().add(exit);
 
         //
@@ -106,8 +106,13 @@ public class GraphEditorDemoView implements IView {
 
         //
         Menu actions = new Menu("Действия");
+        MenuItem addNode = new MenuItem("+ Узел");
+        addNode.setOnAction(v -> presenter.addNode());
+        addNode.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+        actions.getItems().add(addNode);
+
         addConnector = new MenuItem("Добавить коннектор");
-        addConnector.setOnAction(v -> presenter.undo());
+        addConnector.setOnAction(v -> presenter.addConnector());
         addConnector.setDisable(true);
 //        addConnector.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
         actions.getItems().add(addConnector);

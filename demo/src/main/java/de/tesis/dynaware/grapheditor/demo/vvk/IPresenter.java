@@ -11,6 +11,7 @@ public interface IPresenter {
     void undo();
     void redo();
     //
+    void addNode();
     void addConnector();
     //
     void nodeSelectionChanged(boolean isSelected);

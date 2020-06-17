@@ -6,6 +6,7 @@ import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.demo.selections.SelectionCopier;
 import de.tesis.dynaware.grapheditor.model.*;
 import javafx.geometry.Side;
+import javafx.scene.input.MouseEvent;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -19,6 +20,8 @@ public class MySchemeSkinController implements SkinController {
     private static final int MAX_CONNECTOR_COUNT = 10;
     private final GraphEditor graphEditor;
     private final GraphEditorContainer graphEditorContainer;
+    protected static final int NODE_INITIAL_X = 19;
+    protected static final int NODE_INITIAL_Y = 19;
 
     public MySchemeSkinController(GraphEditor graphEditor, GraphEditorContainer graphEditorContainer) {
         this.graphEditor = graphEditor;
@@ -30,9 +33,10 @@ public class MySchemeSkinController implements SkinController {
         double windowXOffset = graphEditorContainer.getContentX() / currentZoomFactor;
         double windowYOffset = graphEditorContainer.getContentY() / currentZoomFactor;
 
+        final MouseEvent me = graphEditorContainer.getMouseEvent();
         GNode node = GraphFactory.eINSTANCE.createGNode();
         // TODO centralize
-        node.setY(graphEditorContainer.getMouseEvent().getSceneY() + windowYOffset);
+        node.setY(NODE_INITIAL_Y + windowYOffset);
 
         GConnector rightOutput = GraphFactory.eINSTANCE.createGConnector();
         node.getConnectors().add(rightOutput);
@@ -55,7 +59,7 @@ public class MySchemeSkinController implements SkinController {
 
         buttom.setId("buttom");
 
-        node.setX(graphEditorContainer.getMouseEvent().getSceneX() + windowXOffset);
+        node.setX(NODE_INITIAL_X + windowXOffset);
 
         rightOutput.setType(DefaultConnectorTypes.RIGHT_OUTPUT);
         leftInput.setType(DefaultConnectorTypes.LEFT_INPUT);

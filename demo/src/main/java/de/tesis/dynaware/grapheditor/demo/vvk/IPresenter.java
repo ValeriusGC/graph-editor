@@ -14,5 +14,6 @@ public interface IPresenter {
     void addNode();
     void addConnector();
     //
+    void delete();
     void nodeSelectionChanged(boolean isSelected);
 }

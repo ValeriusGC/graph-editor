@@ -18,4 +18,5 @@ module fx.graph.editor.core
     exports de.tesis.dynaware.grapheditor.core.skins.defaults.connection.segment;
     exports de.tesis.dynaware.grapheditor.core.skins.defaults.tail;
     exports de.tesis.dynaware.grapheditor.core.view;
+    exports de.tesis.dynaware.grapheditor.core.vvk;
 }

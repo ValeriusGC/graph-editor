@@ -11,6 +11,10 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Consumer;
 
+import de.tesis.dynaware.grapheditor.core.vvk.ModelNodes;
+import de.tesis.dynaware.grapheditor.core.vvk.NodeModel;
+import de.tesis.dynaware.grapheditor.core.vvk.NodeModels;
+import de.tesis.dynaware.grapheditor.core.vvk.TypedValue;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Notification;
@@ -107,6 +111,9 @@ public class GraphEditorController<E extends GraphEditor>
     private final Collection<GNode> mNodesToAdd = new HashSet<>();
     private final Collection<GJoint> mJointsToAdd = new HashSet<>();
     private final Collection<GConnector> mConnectorsToAdd = new HashSet<>();
+
+    private final NodeModels nodeModels = new NodeModels();
+    private final ModelNodes modelNodes = new ModelNodes();
 
     private final CommandStackListener mCommandStackListener = event -> process();
 
@@ -361,6 +368,15 @@ public class GraphEditorController<E extends GraphEditor>
                     mSkinManager.lookupOrCreateNode(next); // implicit create
                     mModelLayoutUpdater.addNode(next);
                     mSelectionManager.addNode(next);
+
+                    //
+                    final NodeModel model = new NodeModel(new TypedValue.Id(next.getId()));
+                    nodeModels.items.put(next, model);
+                    modelNodes.items.put(model, next);
+                    System.out.println("GraphEditorController.process: nodeModels="+nodeModels.items.size());
+                    System.out.println("GraphEditorController.process: modelNodes="+modelNodes.items.size());
+                    //~
+
                     markConnectorsDirty(next);
                     iter.remove();
                 }
@@ -593,6 +609,13 @@ public class GraphEditorController<E extends GraphEditor>
         mSelectionManager.clearSelection(pNode);
         mModelLayoutUpdater.removeNode(pNode);
         mSkinManager.removeNode(pNode);
+        //
+        final NodeModel model = nodeModels.items.get(pNode);
+        nodeModels.items.remove(pNode);
+        modelNodes.items.remove(model);
+        System.out.println("GraphEditorController.removeNode: nodeModels="+nodeModels.items.size());
+        System.out.println("GraphEditorController.removeNode: modelNodes="+modelNodes.items.size());
+
     }
 
     private void addConnector(final GConnector pConnector)

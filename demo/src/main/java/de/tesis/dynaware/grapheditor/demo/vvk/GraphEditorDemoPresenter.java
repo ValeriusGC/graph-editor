@@ -27,6 +27,8 @@ import javafx.scene.layout.Region;
 import javafx.stage.WindowEvent;
 import org.eclipse.emf.ecore.EObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -236,6 +238,12 @@ public class GraphEditorDemoPresenter implements IPresenter {
     public void addConnector() {
         activeSkinController.get().addConnector(Side.LEFT, true);
 //        ctrl.addConnector();
+    }
+
+    @Override
+    public void delete() {
+        final List<EObject> selection = new ArrayList<>(graphEditor.getSelectionManager().getSelectedItems());
+        graphEditor.delete(selection);
     }
 
     @Override

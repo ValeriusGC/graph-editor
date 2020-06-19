@@ -104,6 +104,11 @@ public class GraphEditorDemoView implements IView {
         redo.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+Z"));
         editor.getItems().add(redo);
 
+        MenuItem delete = new MenuItem("Удалить");
+        delete.setOnAction(v -> presenter.delete());
+        delete.setAccelerator(KeyCombination.keyCombination("Delete"));
+        editor.getItems().add(delete);
+
         //
         Menu actions = new Menu("Действия");
         MenuItem addNode = new MenuItem("+ Узел");

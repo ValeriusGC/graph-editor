@@ -3,6 +3,7 @@ package de.tesis.dynaware.grapheditor.demo.customskins;
 import de.tesis.dynaware.grapheditor.*;
 import de.tesis.dynaware.grapheditor.core.connectors.DefaultConnectorTypes;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
+import de.tesis.dynaware.grapheditor.core.vvk.TypedValue;
 import de.tesis.dynaware.grapheditor.demo.selections.SelectionCopier;
 import de.tesis.dynaware.grapheditor.model.*;
 import javafx.geometry.Side;
@@ -35,6 +36,10 @@ public class MySchemeSkinController implements SkinController {
 
         final MouseEvent me = graphEditorContainer.getMouseEvent();
         GNode node = GraphFactory.eINSTANCE.createGNode();
+        final TypedValue.Id id = new TypedValue.Id(Long.toHexString(System.currentTimeMillis()));
+        node.setId(id.value);
+        System.out.println("MySchemeSkinController.addNode: id="+node.getId());
+
         // TODO centralize
         node.setY(NODE_INITIAL_Y + windowYOffset);
 

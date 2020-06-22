@@ -64,7 +64,6 @@ public class GraphEditorDemoView implements IView {
         return b;
     }
 
-
     MenuItem addConnector;
 
     public Node menuBar() {

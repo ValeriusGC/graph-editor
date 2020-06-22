@@ -1,0 +1,25 @@
+site_name: Алгодеза-2020
+theme: 'mkdocs'
+#theme: 'readthedocs'
+plugins:
+  - mkpdfs
+markdown_extensions:
+  - codehilite
+  - markdown.extensions.admonition
+use_directory_urls: false
+#extra_css:
+#  - style/css/override.css
+#repo_url: https://github.com/stablekernel/aqueduct
+#edit_uri: edit/docs/source/source/docs/
+#google_analytics: ['UA-41269877-2', 'aqueduct.io']
+site_description: Documentation for Aqueduct, a Dart server-side framework.
+copyright: В.Куликов, для НПП "ЭиС"
+pages:
+  - Главная: 'index.md'
+  - Узлы:
+    - 1. Описание: 'node_struct.md'
+    - 2. Алгоритмы: 'node_algo.md'
+  - Части:
+      - 1. Руководство: 'user_manual/user_manual_start.md'
+      - 2. Паттерны: 'patterns/pattern_start.md'
+      - 1. Алгоритмы: 'algo/algo_start.md'

@@ -99,7 +99,9 @@ public class GraphEditorDemoPresenter implements IPresenter {
         graphEditorPersistence.loadFromFile(graphEditor);
     }
 
-
+    public void save() {
+        graphEditorPersistence.saveToFile(graphEditor);
+    }
 
     private void checkConnectorButtonsToDisable() {
         final boolean nothingSelected = graphEditor.getSelectionManager().getSelectedItems().stream()
@@ -161,6 +163,7 @@ public class GraphEditorDemoPresenter implements IPresenter {
     @Override
     public void saveScheme() {
         System.out.println("GraphEditorDemoPresenter.saveScheme");
+        save();
     }
 
     @Override

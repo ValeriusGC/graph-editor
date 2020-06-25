@@ -1,4 +1,4 @@
-site_name: Алгодеза-2020
+site_name: Система 'ГРАФ'
 theme: 'mkdocs'
 #theme: 'readthedocs'
 plugins:
@@ -7,19 +7,13 @@ markdown_extensions:
   - codehilite
   - markdown.extensions.admonition
 use_directory_urls: false
-#extra_css:
-#  - style/css/override.css
-#repo_url: https://github.com/stablekernel/aqueduct
-#edit_uri: edit/docs/source/source/docs/
-#google_analytics: ['UA-41269877-2', 'aqueduct.io']
-site_description: Documentation for Aqueduct, a Dart server-side framework.
-copyright: В.Куликов, для НПП "ЭиС"
+site_description: Открытая документация для ГРАФ - Графического Редактора Алгоритмов и Функций
+copyright: В.Куликов, для НПП "ЭиС", 2020
 pages:
-  - Главная: 'index.md'
-  - Узлы:
-    - 1. Описание: 'node_struct.md'
-    - 2. Алгоритмы: 'node_algo.md'
-  - Части:
-      - 1. Руководство: 'user_manual/user_manual_start.md'
-      - 2. Паттерны: 'patterns/pattern_start.md'
-      - 1. Алгоритмы: 'algo/algo_start.md'
+  - 'Главная': 'index.md'
+  - 'Руководство разработчика':
+      - '1. Правила': 'code_manual/rules.md'
+      - '2. Спецификация': 'code_manual/specs.md'
+      - '3. История разработки': 'code_manual/dev_history.md'
+  - 'Руководство пользователя':
+      - '1. Кухня': 'user_manual/user_manual_start.md'

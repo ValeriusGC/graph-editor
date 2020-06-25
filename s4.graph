@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<graph:GModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://de.tesis.dynaware.grapheditor.model/1.0">
+  <nodes id="172e0ea8835" type="and-node" x="469.0" y="34.0" width="66.0">
+    <connectors type="right-output"/>
+    <connectors type="left-input"/>
+    <connectors id="invers" type="left-input"/>
+    <connectors id="top" type="top-output"/>
+    <connectors id="buttom" type="bottom-output"/>
+  </nodes>
+  <nodes id="172e0eaac86" type="and-node" x="156.0" y="409.0" height="179.0">
+    <connectors type="right-output"/>
+    <connectors type="left-input"/>
+    <connectors id="invers" type="left-input"/>
+    <connectors id="top" type="top-output"/>
+    <connectors id="buttom" type="bottom-output"/>
+  </nodes>
+  <nodes id="172e0eac9c7" type="and-node" x="550.0" y="429.0" height="93.0">
+    <connectors type="right-output"/>
+    <connectors type="left-input"/>
+    <connectors id="invers" type="left-input"/>
+    <connectors id="top" type="top-output"/>
+    <connectors id="buttom" type="bottom-output"/>
+  </nodes>
+  <nodes id="172e0f4e2f2" type="and-node" x="152.0" y="121.0">
+    <connectors type="right-output"/>
+    <connectors type="left-input"/>
+    <connectors id="invers" type="left-input"/>
+    <connectors id="top" type="top-output"/>
+    <connectors id="buttom" type="bottom-output"/>
+  </nodes>
+</graph:GModel>

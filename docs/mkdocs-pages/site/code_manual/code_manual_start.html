@@ -5,19 +5,19 @@
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="img/favicon.ico" rel="shortcut icon"/>
-<title>ГРАФ - Графический Редактор Алгоритмов и Функций, v.0.5 (beta) - Алгодеза-2020</title>
-<link href="css/bootstrap-custom.min.css" rel="stylesheet"/>
-<link href="css/font-awesome.min.css" rel="stylesheet"/>
-<link href="css/base.css" rel="stylesheet"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Code manual start - Система 'ГРАФ'</title>
+<link href="../css/bootstrap-custom.min.css" rel="stylesheet"/>
+<link href="../css/font-awesome.min.css" rel="stylesheet"/>
+<link href="../css/base.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet"/>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-<script defer="" src="js/jquery-1.10.2.min.js"></script>
-<script defer="" src="js/bootstrap-3.0.3.min.js"></script>
+<script defer="" src="../js/jquery-1.10.2.min.js"></script>
+<script defer="" src="../js/bootstrap-3.0.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -33,37 +33,31 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="index.html">Алгодеза-2020</a>
+<a class="navbar-brand" href="../index.html">Система 'ГРАФ'</a>
 </div>
 <!-- Expanded navigation -->
 <div class="navbar-collapse collapse">
 <!-- Main navigation -->
 <ul class="nav navbar-nav">
 <li>
-<a href="index.html">Главная</a>
+<a href="../index.html">Главная</a>
 </li>
 <li class="dropdown">
-<a class="dropdown-toggle" data-toggle="dropdown" href="#">Узлы <b class="caret"></b></a>
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство разработчика <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li>
-<a href="node_struct.html">1. Описание</a>
+<a href="rules.html">1. Правила</a>
 </li>
 <li>
-<a href="node_algo.html">2. Алгоритмы</a>
+<a href="specs.html">1. Спецификация</a>
 </li>
 </ul>
 </li>
 <li class="dropdown">
-<a class="dropdown-toggle" data-toggle="dropdown" href="#">Части <b class="caret"></b></a>
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство пользователя <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li>
-<a href="user_manual/user_manual_start.html">1. Руководство</a>
-</li>
-<li>
-<a href="patterns/pattern_start.html">2. Паттерны</a>
-</li>
-<li>
-<a href="algo/algo_start.html">1. Алгоритмы</a>
+<a href="../user_manual/user_manual_start.html">1. Кухня</a>
 </li>
 </ul>
 </li>
@@ -76,38 +70,26 @@
 <div class="container">
 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
 <ul class="nav bs-sidenav">
-<li class="main active"><a href="#-v05-beta">ГРАФ - Графический Редактор Алгоритмов и Функций, v.0.5 (beta)</a></li>
-<li><a href="#commands">Commands</a></li>
-<li><a href="#project-layout">Project layout</a></li>
+<li class="main active"><a href="#_1">Руководство разработчика</a></li>
 </ul>
 </div></div>
-<div class="col-md-9" role="main"><a class="md-content__icon pdf-download-btn" download href="pdf/combined.pdf" title="Download"><i class="fa fas fa-download"></i><small> PDF</small></a>
-<h1 id="-v05-beta">ГРАФ - Графический Редактор Алгоритмов и Функций, v.0.5 (beta)</h1>
-<p>Описание и алгоритмы</p>
-<h2 id="commands">Commands</h2>
+<div class="col-md-9" role="main"><a class="md-content__icon pdf-download-btn" download href="../pdf/combined.pdf" title="Download"><i class="fa fas fa-download"></i><small> PDF</small></a>
+<h2 id="_1">Руководство разработчика</h2>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<div class="codehilite"><pre><span></span><code><span class="err">mkdocs.yml    # The configuration file.</span>
-<span class="err">docs/</span>
-<span class="err">    index.md  # The documentation homepage.</span>
-<span class="err">    ...       # Other markdown pages, images and other files.</span>
-</code></pre></div></div>
+<li><a href="rules.html">Правила</a></li>
+<li><a href="specs.html">Спеки</a></li>
+</ul></div>
 </div>
 <footer class="col-md-12">
 <hr/>
-<p>В.Куликов, для НПП "ЭиС"</p>
+<p>В.Куликов, для НПП "ЭиС", 2020</p>
 <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
 </footer>
 <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-<script defer="" src="js/base.js"></script>
+<script defer="" src="../js/base.js"></script>
 <div aria-hidden="true" aria-labelledby="Keyboard Shortcuts Modal" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
 <div class="modal-dialog">
 <div class="modal-content">

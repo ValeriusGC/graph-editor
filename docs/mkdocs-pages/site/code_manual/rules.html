@@ -6,7 +6,7 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>2. Паттерны - Алгодеза-2020</title>
+<title>1. Правила - Система 'ГРАФ'</title>
 <link href="../css/bootstrap-custom.min.css" rel="stylesheet"/>
 <link href="../css/font-awesome.min.css" rel="stylesheet"/>
 <link href="../css/base.css" rel="stylesheet"/>
@@ -33,7 +33,7 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="../index.html">Алгодеза-2020</a>
+<a class="navbar-brand" href="../index.html">Система 'ГРАФ'</a>
 </div>
 <!-- Expanded navigation -->
 <div class="navbar-collapse collapse">
@@ -42,40 +42,34 @@
 <li>
 <a href="../index.html">Главная</a>
 </li>
-<li class="dropdown">
-<a class="dropdown-toggle" data-toggle="dropdown" href="#">Узлы <b class="caret"></b></a>
+<li class="dropdown active">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство разработчика <b class="caret"></b></a>
 <ul class="dropdown-menu">
-<li>
-<a href="../node_struct.html">1. Описание</a>
+<li class="active">
+<a href="rules.html">1. Правила</a>
 </li>
 <li>
-<a href="../node_algo.html">2. Алгоритмы</a>
+<a href="specs.html">1. Спецификация</a>
 </li>
 </ul>
 </li>
-<li class="dropdown active">
-<a class="dropdown-toggle" data-toggle="dropdown" href="#">Части <b class="caret"></b></a>
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство пользователя <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li>
-<a href="../user_manual/user_manual_start.html">1. Руководство</a>
-</li>
-<li class="active">
-<a href="pattern_start.html">2. Паттерны</a>
-</li>
-<li>
-<a href="../algo/algo_start.html">1. Алгоритмы</a>
+<a href="../user_manual/user_manual_start.html">1. Кухня</a>
 </li>
 </ul>
 </li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-<a href="../user_manual/user_manual_start.html" rel="next">
+<a href="../index.html" rel="next">
 <i class="fa fa-arrow-left"></i> Previous
                                 </a>
 </li>
 <li>
-<a href="../algo/algo_start.html" rel="prev">
+<a href="specs.html" rel="prev">
                                     Next <i class="fa fa-arrow-right"></i>
 </a>
 </li>
@@ -86,36 +80,51 @@
 <div class="container">
 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
 <ul class="nav bs-sidenav">
-<li class="main active"><a href="#_1">Паттерны</a></li>
+<li class="main active"><a href="#_1">Руководство разработчика</a></li>
+<li><a href="#_2">Вечные проблемы разработки</a></li>
+<li><a href="#_3">Основные правила</a></li>
+<li><a href="#_5">Цикл разработки</a></li>
 </ul>
 </div></div>
 <div class="col-md-9" role="main"><a class="md-content__icon pdf-download-btn" download href="../pdf/combined.pdf" title="Download"><i class="fa fas fa-download"></i><small> PDF</small></a>
-<h2 id="_1">Паттерны</h2>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p>
-<p>Паттерны</p></div>
+<h2 id="_1">Руководство разработчика</h2>
+<h3 id="_2">Вечные проблемы разработки</h3>
+<ul>
+<li>Отсутствие адекватной документации в коде и для пользователя</li>
+<li>Непонимание "чего тут понаписано" при смене разработчика</li>
+<li>Плохо протестированная функциональность</li>
+</ul>
+<p><strong>Следует придерживаться основных правил и шагов разработки</strong></p>
+<h3 id="_3">Основные правила</h3>
+<ul>
+<li>Вся документация и код должны разрабатываться одновременно</li>
+<li>Код должен храниться в системе контроля версий</li>
+<li>Комментарии в коде </li>
+<li>Стараться тестировать всю логику по (принцип TDD)</li>
+</ul>
+<p><img alt="Test" src="../img/test.png"/></p>
+<h4 id="_4">Виды документации</h4>
+<ul>
+<li>Документация разработчика, включая технические вопросы сборки и запуска</li>
+<li>Руководство пользователя</li>
+<li>Комментарии в коде </li>
+</ul>
+<h3 id="_5">Цикл разработки</h3>
+<ol>
+<li>Описание задачи в свободной форме (Тезисы, User Story)</li>
+<li>Формализация в алгоритм</li>
+<li>Тестовый код</li>
+<li>Реализация + комментарии в коде </li>
+<li>Проверка сборки и запуска</li>
+<li>Анализ полученного, проверка соответствия задачи, документации и работы приложения</li>
+<li>Итеративное редактирование (пп. 1-6) или переход к другой задаче</li>
+</ol>
+<hr/>
+<p>Далее: <a href="specs.html">спецификация</a></p></div>
 </div>
 <footer class="col-md-12">
 <hr/>
-<p>В.Куликов, для НПП "ЭиС"</p>
+<p>В.Куликов, для НПП "ЭиС", 2020</p>
 <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
 </footer>
 <script>

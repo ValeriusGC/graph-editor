@@ -11,10 +11,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Consumer;
 
-import de.tesis.dynaware.grapheditor.core.vvk.ModelNodes;
-import de.tesis.dynaware.grapheditor.core.vvk.NodeModel;
-import de.tesis.dynaware.grapheditor.core.vvk.NodeModels;
-import de.tesis.dynaware.grapheditor.core.vvk.TypedValue;
+import de.tesis.dynaware.grapheditor.core.vvk.*;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Notification;
@@ -112,8 +109,8 @@ public class GraphEditorController<E extends GraphEditor>
     private final Collection<GJoint> mJointsToAdd = new HashSet<>();
     private final Collection<GConnector> mConnectorsToAdd = new HashSet<>();
 
-    private final NodeModels nodeModels = new NodeModels();
-    private final ModelNodes modelNodes = new ModelNodes();
+//    private final NodeModels nodeModels = new NodeModels();
+//    private final ModelNodes modelNodes = new ModelNodes();
 
     private final CommandStackListener mCommandStackListener = event -> process();
 
@@ -371,10 +368,14 @@ public class GraphEditorController<E extends GraphEditor>
 
                     //
                     final NodeModel model = new NodeModel(new TypedValue.Id(next.getId()));
-                    nodeModels.items.put(next, model);
-                    modelNodes.items.put(model, next);
-                    System.out.println("GraphEditorController.process: nodeModels="+nodeModels.items.size());
-                    System.out.println("GraphEditorController.process: modelNodes="+modelNodes.items.size());
+
+                    GrafModel.State.nodeModels.items.put(next, model);
+                    GrafModel.State.modelNodes.items.put(model, next);
+                    System.out.println("GraphEditorController.process: node.id="+next.getId());
+//                    System.out.println("GraphEditorController.process: nodeModels="+VvkModelMono.State.nodeModels.items.size());
+//                    System.out.println("GraphEditorController.process: modelNodes="+VvkModelMono.State.modelNodes.items.size());
+//                    System.out.println("GraphEditorController.process: mono.2="+ VvkModelMono.State.stateName);
+//                    System.out.println("GraphEditorController.process: mono.1="+ VvkModelMono.State.stateName);
                     //~
 
                     markConnectorsDirty(next);
@@ -610,11 +611,11 @@ public class GraphEditorController<E extends GraphEditor>
         mModelLayoutUpdater.removeNode(pNode);
         mSkinManager.removeNode(pNode);
         //
-        final NodeModel model = nodeModels.items.get(pNode);
-        nodeModels.items.remove(pNode);
-        modelNodes.items.remove(model);
-        System.out.println("GraphEditorController.removeNode: nodeModels="+nodeModels.items.size());
-        System.out.println("GraphEditorController.removeNode: modelNodes="+modelNodes.items.size());
+        final NodeModel model = GrafModel.State.nodeModels.items.get(pNode);
+        GrafModel.State.nodeModels.items.remove(pNode);
+        GrafModel.State.modelNodes.items.remove(model);
+//        System.out.println("GraphEditorController.removeNode: nodeModels="+VvkModelMono.State.nodeModels.items.size());
+//        System.out.println("GraphEditorController.removeNode: modelNodes="+VvkModelMono.State.modelNodes.items.size());
 
     }
 

@@ -1,0 +1,15 @@
+@startuml
+'Left to right direction
+title Проверка корректности списка Юзеров\n(**alg_check_user_list**)
+
+start
+:наличие Админа
+(один и только один Админ);
+
+if(все верно) then (yes)
+else
+  :Формирование и передача
+  ошибки;
+endif
+stop
+@enduml

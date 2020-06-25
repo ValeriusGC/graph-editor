@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<graph:GModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://de.tesis.dynaware.grapheditor.model/1.0">
+  <nodes id="172e08d1355" type="and-node" x="171.0" y="15.0" width="65.0" height="248.0">
+    <connectors type="right-output"/>
+    <connectors type="left-input"/>
+    <connectors id="invers" type="left-input"/>
+    <connectors id="top" type="top-output"/>
+    <connectors id="buttom" type="bottom-output"/>
+  </nodes>
+  <nodes id="172e08d3639" type="and-node" x="566.0" y="125.0">
+    <connectors type="right-output"/>
+    <connectors type="left-input"/>
+    <connectors id="invers" type="left-input"/>
+    <connectors id="top" type="top-output"/>
+    <connectors id="buttom" type="bottom-output"/>
+  </nodes>
+</graph:GModel>

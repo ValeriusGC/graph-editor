@@ -2,7 +2,7 @@ package de.tesis.dynaware.grapheditor.core.vvk;
 
 public class NodeModel {
 
-    final TypedValue.Id id;
+    public final TypedValue.Id id;
 
     public NodeModel(TypedValue.Id id) {
         this.id = id;

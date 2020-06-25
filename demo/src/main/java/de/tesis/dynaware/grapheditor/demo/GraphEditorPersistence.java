@@ -1,14 +1,19 @@
 package de.tesis.dynaware.grapheditor.demo;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
 
+import de.tesis.dynaware.grapheditor.core.vvk.GrafModel;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import de.tesis.dynaware.grapheditor.GraphEditor;
 import de.tesis.dynaware.grapheditor.model.GModel;
@@ -194,6 +199,42 @@ public class GraphEditorPersistence {
         editingDomain.getResourceSet().getResources().add(resource);
 
         initialDirectory = file.getParentFile();
+
+        JSONObject obj = new JSONObject();
+        obj.put("Name", "Crunchify.com");
+        obj.put("Author", "App Shah");
+        JSONArray company = new JSONArray();
+        company.add("Company: Facebook");
+        company.add("Company: PayPal");
+        company.add("Company: Google");
+        obj.put("Company List", company);
+
+        final Object[] arr = GrafModel.State.nodeModels.items.values().stream()
+                .map(e->e.id.value).toArray();
+        System.out.println("arr="+arr);
+
+        FileWriter file2 = null;
+        try {
+            // Constructs a FileWriter given a file name, using the platform's default charset
+            String file2Path = file.getAbsolutePath();
+            file2Path += ".bind";
+            file2 = new FileWriter(file2Path);
+            file2.write(obj.toJSONString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(file2 != null){
+                    file2.flush();
+                    file2.close();
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

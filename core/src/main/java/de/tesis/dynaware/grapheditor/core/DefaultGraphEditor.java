@@ -201,4 +201,5 @@ public class DefaultGraphEditor implements GraphEditor
     {
         return mController.getModelEditingManager();
     }
+
 }

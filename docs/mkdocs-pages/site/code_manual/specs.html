@@ -6,7 +6,7 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>1. Алгоритмы - Алгодеза-2020</title>
+<title>1. Спецификация - Система 'ГРАФ'</title>
 <link href="../css/bootstrap-custom.min.css" rel="stylesheet"/>
 <link href="../css/font-awesome.min.css" rel="stylesheet"/>
 <link href="../css/base.css" rel="stylesheet"/>
@@ -33,7 +33,7 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-<a class="navbar-brand" href="../index.html">Алгодеза-2020</a>
+<a class="navbar-brand" href="../index.html">Система 'ГРАФ'</a>
 </div>
 <!-- Expanded navigation -->
 <div class="navbar-collapse collapse">
@@ -42,40 +42,34 @@
 <li>
 <a href="../index.html">Главная</a>
 </li>
-<li class="dropdown">
-<a class="dropdown-toggle" data-toggle="dropdown" href="#">Узлы <b class="caret"></b></a>
+<li class="dropdown active">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство разработчика <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li>
-<a href="../node_struct.html">1. Описание</a>
+<a href="rules.html">1. Правила</a>
 </li>
-<li>
-<a href="../node_algo.html">2. Алгоритмы</a>
+<li class="active">
+<a href="specs.html">1. Спецификация</a>
 </li>
 </ul>
 </li>
-<li class="dropdown active">
-<a class="dropdown-toggle" data-toggle="dropdown" href="#">Части <b class="caret"></b></a>
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство пользователя <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li>
-<a href="../user_manual/user_manual_start.html">1. Руководство</a>
-</li>
-<li>
-<a href="../patterns/pattern_start.html">2. Паттерны</a>
-</li>
-<li class="active">
-<a href="algo_start.html">1. Алгоритмы</a>
+<a href="../user_manual/user_manual_start.html">1. Кухня</a>
 </li>
 </ul>
 </li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-<a href="../patterns/pattern_start.html" rel="next">
+<a href="rules.html" rel="next">
 <i class="fa fa-arrow-left"></i> Previous
                                 </a>
 </li>
-<li class="disabled">
-<a rel="prev">
+<li>
+<a href="../user_manual/user_manual_start.html" rel="prev">
                                     Next <i class="fa fa-arrow-right"></i>
 </a>
 </li>
@@ -86,36 +80,41 @@
 <div class="container">
 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
 <ul class="nav bs-sidenav">
-<li class="main active"><a href="#_1">Алгоритмы</a></li>
+<li class="main active"><a href="#_1">Техническая часть</a></li>
+<li><a href="#_2">ОС разработки</a></li>
+<li><a href="#ide">Языки, фреймворки, IDE</a></li>
+<li><a href="#_3">Инструмент документирования</a></li>
+<li><a href="#_5">Строка деплоя</a></li>
 </ul>
 </div></div>
 <div class="col-md-9" role="main"><a class="md-content__icon pdf-download-btn" download href="../pdf/combined.pdf" title="Download"><i class="fa fas fa-download"></i><small> PDF</small></a>
-<h2 id="_1">Алгоритмы</h2>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p>
-<p>Алгоритмы</p></div>
+<h2 id="_1">Техническая часть</h2>
+<p><em>Приложение разрабатывается на Ubuntu, но регулярно тестируется 
+на Win10 для проверки на кроссплатформенность.</em> </p>
+<h3 id="_2">ОС разработки</h3>
+<p>Ubuntu 20.04.</p>
+<h3 id="ide">Языки, фреймворки, IDE</h3>
+<ul>
+<li>Языки: Java, JavaFx, Kotlin</li>
+<li>Фреймворк: openjdk 11</li>
+<li>Тул сборки: POM</li>
+<li>IDE: IntelliJ IDEA Community Edition </li>
+</ul>
+<h3 id="_3">Инструмент документирования</h3>
+<p>Документация пишется в MkDocs,
+генерится в 2 формата - статический сайт HTML-страниц и PDF.</p>
+<h4 id="_4">Временное размещение в веб</h4>
+<p>Для проверки доступа по сети сайт документации размещается
+по адресу <a href="https://valeriusgc.github.io/">valeriusgc.github.io/</a>.</p>
+<h3 id="_5">Строка деплоя</h3>
+<p>export PATH="$PATH:/usr/lib/jvm/java-11-openjdk-amd64/bin/java" \
+    &amp;&amp; export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64" \ 
+    &amp;&amp; ./build.sh \ 
+    &amp;&amp; ./start.sh</p></div>
 </div>
 <footer class="col-md-12">
 <hr/>
-<p>В.Куликов, для НПП "ЭиС"</p>
+<p>В.Куликов, для НПП "ЭиС", 2020</p>
 <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
 </footer>
 <script>

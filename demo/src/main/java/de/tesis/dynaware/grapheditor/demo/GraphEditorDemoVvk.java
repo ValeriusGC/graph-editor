@@ -31,6 +31,7 @@ public class GraphEditorDemoVvk extends Application {
     private static final String DEMO_STYLESHEET = "demo.css"; //$NON-NLS-1$
     private static final String TREE_SKIN_STYLESHEET = "treeskins.css"; //$NON-NLS-1$
     private static final String TITLED_SKIN_STYLESHEET = "titledskins.css"; //$NON-NLS-1$
+    private static final String ULO_SKIN_STYLESHEET = "uloskins.css";
     private static final String FONT_AWESOME = "fontawesome.ttf"; //$NON-NLS-1$
 
 //    GraphEditorDemoControllerVvk ctrl;
@@ -63,6 +64,7 @@ public class GraphEditorDemoVvk extends Application {
         scene.getStylesheets().add(getClass().getResource(TREE_SKIN_STYLESHEET).toExternalForm());
         scene.getStylesheets().add(getClass().getResource(TITLED_SKIN_STYLESHEET).toExternalForm());
         scene.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource(ULO_SKIN_STYLESHEET).toExternalForm());
         Font.loadFont(getClass().getResource(FONT_AWESOME).toExternalForm(), 12);
 
         primaryStage.setScene(scene);

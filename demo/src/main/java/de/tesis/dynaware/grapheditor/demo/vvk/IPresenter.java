@@ -1,7 +1,11 @@
 package de.tesis.dynaware.grapheditor.demo.vvk;
 
+import de.tesis.dynaware.grapheditor.GraphEditor;
+
 public interface IPresenter {
     void setView(IView view);
+    GraphEditor getGraphEditor();
+
     void buttonPressed();
     void openScheme();
     void saveScheme();
@@ -12,7 +16,13 @@ public interface IPresenter {
     void redo();
     //
     void addNode();
-    void addConnector();
+    void addNodeAnd();
+    void addNodeOr();
+    void addNodeTr();
+    void addInputConnector();
+    void addOutputConnector();
+    //
+    void showGrid();
     //
     void delete();
     void nodeSelectionChanged(boolean isSelected);

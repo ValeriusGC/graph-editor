@@ -2,6 +2,8 @@ package de.tesis.dynaware.grapheditor.demo.vvk;
 
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.demo.utils.AwesomeIcon;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -9,8 +11,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-
-import java.util.function.Consumer;
 
 public class GraphEditorDemoView implements IView {
 
@@ -64,7 +64,8 @@ public class GraphEditorDemoView implements IView {
         return b;
     }
 
-    MenuItem addConnector;
+    MenuItem addInputConnector;
+    MenuItem addOutputConnector;
 
     public Node menuBar() {
         Menu file = new Menu("Файл");
@@ -110,21 +111,45 @@ public class GraphEditorDemoView implements IView {
 
         //
         Menu actions = new Menu("Действия");
-        MenuItem addNode = new MenuItem("+ Узел");
+        //
+        MenuItem addNode = new MenuItem("+ Узел нового типа");
         addNode.setOnAction(v -> presenter.addNode());
-        addNode.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
         actions.getItems().add(addNode);
+        MenuItem addNodeAnd = new MenuItem("+ Узел AND");
+        addNodeAnd.setOnAction(v -> presenter.addNodeAnd());
+        actions.getItems().add(addNodeAnd);
+        actions.getItems().add(createMenuItem("+ Узел OR", v -> presenter.addNodeOr()));
+        actions.getItems().add(createMenuItem("+ Узел TR", v -> presenter.addNodeTr()));
 
-        addConnector = new MenuItem("Добавить коннектор");
-        addConnector.setOnAction(v -> presenter.addConnector());
-        addConnector.setDisable(true);
+        addInputConnector = new MenuItem("Добавить вход");
+        addInputConnector.setOnAction(v -> presenter.addInputConnector());
+        addInputConnector.setDisable(true);
+        addOutputConnector = new MenuItem("Добавить выход");
+        addOutputConnector.setOnAction(v -> presenter.addOutputConnector());
+        addOutputConnector.setDisable(true);
 //        addConnector.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
-        actions.getItems().add(addConnector);
+        actions.getItems().addAll(addInputConnector, addOutputConnector);
+
+        //
+        Menu view = new Menu("Вид");
+        RadioMenuItem showGrid = new RadioMenuItem("Сетка");
+        presenter.getGraphEditor().getProperties().gridVisibleProperty().bind(showGrid.selectedProperty());
+        RadioMenuItem snapGrid = new RadioMenuItem("Выравнивать по сетке");
+        presenter.getGraphEditor().getProperties().snapToGridProperty().bind(snapGrid.selectedProperty());
+        view.getItems().addAll(showGrid, snapGrid);
 
         MenuBar node = new MenuBar();
-        node.getMenus().addAll(file, editor, actions);
+        node.getMenus().addAll(file, editor, actions, view);
         return node;
     }
+
+    MenuItem createMenuItem(String s, EventHandler<ActionEvent> eh) {
+        MenuItem addNode = new MenuItem(s);
+        addNode.setOnAction(eh);
+        return addNode;
+    }
+
+    ;
 
     public ToggleButton btn() {
         ToggleButton btn = new ToggleButton();
@@ -171,8 +196,11 @@ public class GraphEditorDemoView implements IView {
     @Override
     public void onNodeSelectionChanged(boolean isSelected) {
         System.out.println("GraphEditorDemoView.onNodeSelectionChanged: " + isSelected);
-        if(addConnector != null){
-            addConnector.setDisable(!isSelected);
+        if (addInputConnector != null) {
+            addInputConnector.setDisable(!isSelected);
+        }
+        if (addOutputConnector != null) {
+            addOutputConnector.setDisable(!isSelected);
         }
     }
 }

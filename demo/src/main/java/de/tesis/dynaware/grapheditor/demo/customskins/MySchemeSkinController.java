@@ -2,9 +2,11 @@ package de.tesis.dynaware.grapheditor.demo.customskins;
 
 import de.tesis.dynaware.grapheditor.*;
 import de.tesis.dynaware.grapheditor.core.connectors.DefaultConnectorTypes;
+import de.tesis.dynaware.grapheditor.core.skins.defaults.DefaultNodeSkin;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.core.vvk.TypedValue;
 import de.tesis.dynaware.grapheditor.demo.selections.SelectionCopier;
+import de.tesis.dynaware.grapheditor.demo.vvk.ulo.*;
 import de.tesis.dynaware.grapheditor.model.*;
 import javafx.geometry.Side;
 import javafx.scene.input.MouseEvent;
@@ -83,12 +85,47 @@ public class MySchemeSkinController implements SkinController {
     }
 
     private GNodeSkin createSkin(GNode gNode) {
-        return new AndNodeSkin(gNode);
+        return fromFactory(gNode);
+//        return new AndNodeSkin(gNode);
     }
 
     private GConnectorSkin createSkin(GConnector gConnector){
         return  new AndConnectorSkin(gConnector);
     }
+
+    private GNodeSkin fromFactory(final GNode node) {
+        return new AndNodeSkin(node);
+//        final String type = node.getType();
+//        System.out.println("MySchemeSkinController.fromFactory: type="+type);
+//        GNodeSkin skin;
+//        switch (type) {
+//            case UloSkinConstants.ULO_NODE_OR:
+//                skin = new UloOrNodeSkin(node);
+//                break;
+//            case UloSkinConstants.ULO_NODE_OR_3:
+//                skin = new UloOr3NodeSkin(node);
+//                break;
+//            case UloSkinConstants.ULO_NODE_OR_2:
+//                skin = new UloOr2NodeSkin(node);
+//                break;
+//            case UloSkinConstants.ULO_NODE_AND:
+//                skin = new UloAndNodeSkin(node);
+//                break;
+//            case UloSkinConstants.ULO_NODE_TR:
+//                skin = new UloTrNodeSkin(node);
+//                break;
+//            case UloSkinConstants.ULO_NODE_TR_S:
+//                skin = new UloTrSNodeSkin(node);
+//                break;
+//            case UloSkinConstants.ULO_NODE_TR_Q:
+//                skin = new UloTrQNodeSkin(node);
+//                break;
+//            default:
+//                skin = new AndNodeSkin(node);
+//        }
+//        return skin;
+    }
+
 
     /**
      * Adds a connector of the given type to all nodes that are currently selected.

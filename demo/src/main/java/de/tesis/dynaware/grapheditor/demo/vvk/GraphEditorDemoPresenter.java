@@ -11,6 +11,8 @@ import de.tesis.dynaware.grapheditor.demo.customskins.DefaultSkinController;
 import de.tesis.dynaware.grapheditor.demo.customskins.MySchemeSkinController;
 import de.tesis.dynaware.grapheditor.demo.customskins.SkinController;
 import de.tesis.dynaware.grapheditor.demo.selections.SelectionCopier;
+import de.tesis.dynaware.grapheditor.demo.vvk.ulo.UloSkinConstants;
+import de.tesis.dynaware.grapheditor.demo.vvk.ulo.UloSkinController;
 import de.tesis.dynaware.grapheditor.model.GModel;
 import de.tesis.dynaware.grapheditor.model.GNode;
 import de.tesis.dynaware.grapheditor.model.GraphFactory;
@@ -43,8 +45,10 @@ public class GraphEditorDemoPresenter implements IPresenter {
     //
     private DefaultSkinController defaultSkinController;
     private static final String STYLE_CLASS_TITLED_SKINS = "titled-skins"; //$NON-NLS-1$
+
     private final GraphEditor graphEditor = new DefaultGraphEditor();
-    private MySchemeSkinController mySchemeSkinController;
+    private UloSkinController uloSkinController;
+    //private MySchemeSkinController mySchemeSkinController;
     private final SelectionCopier selectionCopier = new SelectionCopier(graphEditor.getSkinLookup(),
             graphEditor.getSelectionManager());
     private final GraphEditorPersistence graphEditorPersistence = new GraphEditorPersistence();
@@ -58,12 +62,15 @@ public class GraphEditorDemoPresenter implements IPresenter {
         }
     };
     public void setDetouredStyle() {
-
         final Map<String, String> customProperties = graphEditor.getProperties().getCustomProperties();
         customProperties.put(SimpleConnectionSkin.SHOW_DETOURS_KEY, Boolean.toString(true));
         graphEditor.reload();
     }
 
+    @Override
+    public GraphEditor getGraphEditor() {
+        return graphEditor;
+    }
 
     /**
      * Called by JavaFX when FXML is loaded.
@@ -79,8 +86,10 @@ public class GraphEditorDemoPresenter implements IPresenter {
         setDetouredStyle();
 
 //        defaultSkinController = new DefaultSkinController(graphEditor, view.getContainer());
-        mySchemeSkinController = new MySchemeSkinController(graphEditor, view.getContainer());
-        activeSkinController.set(mySchemeSkinController);
+        //mySchemeSkinController = new MySchemeSkinController(graphEditor, view.getContainer());
+        uloSkinController = new UloSkinController(graphEditor, view.getContainer());
+        //activeSkinController.set(mySchemeSkinController);
+        activeSkinController.set(uloSkinController);
 //        activeSkinController.set(defaultSkinController);
         activeSkinController.addListener((observable, oldValue, newValue) -> {
             checkConnectorButtonsToDisable();
@@ -234,13 +243,54 @@ public class GraphEditorDemoPresenter implements IPresenter {
     @Override
     public void addNode() {
         final Region v = graphEditor.getView();
-        activeSkinController.get().addNode(v.getLocalToSceneTransform().getMxx());
+//        activeSkinController.get().addNode(v.getLocalToSceneTransform().getMxx());
+        final UloSkinController c = (UloSkinController) activeSkinController.get();
+        c.setNodeType(UloSkinConstants.ULO_NODE_NEWNEW);
+        c.addNode(graphEditor.getView().getLocalToSceneTransform().getMxx());
     }
 
     @Override
-    public void addConnector() {
+    public void addNodeAnd() {
+        final Region v = graphEditor.getView();
+//        activeSkinController.get().addNode(v.getLocalToSceneTransform().getMxx());
+        final UloSkinController c = (UloSkinController) activeSkinController.get();
+        c.setNodeType(UloSkinConstants.ULO_NODE_AND);
+        c.addNode(graphEditor.getView().getLocalToSceneTransform().getMxx());
+    }
+
+    @Override
+    public void addNodeOr() {
+        final Region v = graphEditor.getView();
+//        activeSkinController.get().addNode(v.getLocalToSceneTransform().getMxx());
+        final UloSkinController c = (UloSkinController) activeSkinController.get();
+        c.setNodeType(UloSkinConstants.ULO_NODE_OR);
+        c.addNode(graphEditor.getView().getLocalToSceneTransform().getMxx());
+
+    }
+
+    @Override
+    public void addNodeTr() {
+        final Region v = graphEditor.getView();
+//        activeSkinController.get().addNode(v.getLocalToSceneTransform().getMxx());
+        final UloSkinController c = (UloSkinController) activeSkinController.get();
+        c.setNodeType(UloSkinConstants.ULO_NODE_TR);
+        c.addNode(graphEditor.getView().getLocalToSceneTransform().getMxx());
+    }
+
+    @Override
+    public void addInputConnector() {
         activeSkinController.get().addConnector(Side.LEFT, true);
 //        ctrl.addConnector();
+    }
+
+    @Override
+    public void addOutputConnector() {
+        activeSkinController.get().addConnector(Side.RIGHT, false);
+    }
+
+    @Override
+    public void showGrid() {
+        //graphEditor.getProperties().gridVisibleProperty().bind();
     }
 
     @Override

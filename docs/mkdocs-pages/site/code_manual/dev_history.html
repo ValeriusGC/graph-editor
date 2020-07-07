@@ -6,7 +6,7 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>1. Кухня - Система 'ГРАФ'</title>
+<title>3. История разработки - Система 'ГРАФ'</title>
 <link href="../css/bootstrap-custom.min.css" rel="stylesheet"/>
 <link href="../css/font-awesome.min.css" rel="stylesheet"/>
 <link href="../css/base.css" rel="stylesheet"/>
@@ -42,37 +42,37 @@
 <li>
 <a href="../index.html">Главная</a>
 </li>
-<li class="dropdown">
+<li class="dropdown active">
 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство разработчика <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li>
-<a href="../code_manual/rules.html">1. Правила</a>
+<a href="rules.html">1. Правила</a>
 </li>
 <li>
-<a href="../code_manual/specs.html">2. Спецификация</a>
+<a href="specs.html">2. Спецификация</a>
 </li>
-<li>
-<a href="../code_manual/dev_history.html">3. История разработки</a>
+<li class="active">
+<a href="dev_history.html">3. История разработки</a>
 </li>
 </ul>
 </li>
-<li class="dropdown active">
+<li class="dropdown">
 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство пользователя <b class="caret"></b></a>
 <ul class="dropdown-menu">
-<li class="active">
-<a href="user_manual_start.html">1. Кухня</a>
+<li>
+<a href="../user_manual/user_manual_start.html">1. Кухня</a>
 </li>
 </ul>
 </li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-<a href="../code_manual/dev_history.html" rel="next">
+<a href="specs.html" rel="next">
 <i class="fa fa-arrow-left"></i> Previous
                                 </a>
 </li>
-<li class="disabled">
-<a rel="prev">
+<li>
+<a href="../user_manual/user_manual_start.html" rel="prev">
                                     Next <i class="fa fa-arrow-right"></i>
 </a>
 </li>
@@ -83,12 +83,36 @@
 <div class="container">
 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
 <ul class="nav bs-sidenav">
-<li class="main active"><a href="#_1">Руководство пользователя</a></li>
+<li class="main active"><a href="#_1">История разработки</a></li>
+<li><a href="#062020">06/2020</a></li>
+<li><a href="#052020">05/2020</a></li>
 </ul>
 </div></div>
 <div class="col-md-9" role="main"><a class="md-content__icon pdf-download-btn" download href="../pdf/combined.pdf" title="Download"><i class="fa fas fa-download"></i><small> PDF</small></a>
-<h2 id="_1">Руководство пользователя</h2>
-<p><a href="menu_view.html">Меню "Вид"</a></p></div>
+<h2 id="_1">История разработки</h2>
+<p>Ниже основные моменты разработки в обратной хронологической последовательности.</p>
+<h3 id="062020">06/2020</h3>
+<h4 id="25062020">25/06/2020</h4>
+<p>Иллюстрация разработки "как у нас" и "Как принято" (см. <em>life-flow</em>)</p>
+<h4 id="25062020_1">25/06/2020</h4>
+<p>Окончательная систематизация методологии разработки "alone-dev";</p>
+<h4 id="plantuml">PlantUML</h4>
+<p>Внедрение PlantUML</p>
+<h4 id="_2">Внедрение эффективных правил разработки "В одну каску"</h4>
+<p>В одиночку очень сложно держать в голове все изменения и сложность 
+алгоритмов и кода.
+В силу этого буду придерживаться продвижения по всем фронтам одновременно.
+Тогда документация, алгоритмы, иллюстрации, тесты всегда будет соответствовать 
+коду, и на любом этапе можно быть уверенным, что не надо возвращаться назад 
+и мучительно соединять разрозненные части. </p>
+<h4 id="tornadofx-javafx">Переписывание с TornadoFx на чистый JavaFx</h4>
+<p>Так как <code>TornadoFx</code> перестал развиваться, несмотря на его 
+очевидные преимущества, использованные в <strong>СДКУ-РК</strong>, от него приходится
+отказываться.
+Уже много было понаписано, все это надо переводить на чистый JavaFx.</p>
+<h3 id="052020">05/2020</h3>
+<h4 id="oracle">Проблема лицензирования Oracle</h4>
+<p>Переход на OpenJDK.</p></div>
 </div>
 <footer class="col-md-12">
 <hr/>

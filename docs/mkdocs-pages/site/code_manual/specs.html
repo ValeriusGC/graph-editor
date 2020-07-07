@@ -6,7 +6,7 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>1. Спецификация - Система 'ГРАФ'</title>
+<title>2. Спецификация - Система 'ГРАФ'</title>
 <link href="../css/bootstrap-custom.min.css" rel="stylesheet"/>
 <link href="../css/font-awesome.min.css" rel="stylesheet"/>
 <link href="../css/base.css" rel="stylesheet"/>
@@ -49,7 +49,10 @@
 <a href="rules.html">1. Правила</a>
 </li>
 <li class="active">
-<a href="specs.html">1. Спецификация</a>
+<a href="specs.html">2. Спецификация</a>
+</li>
+<li>
+<a href="dev_history.html">3. История разработки</a>
 </li>
 </ul>
 </li>
@@ -69,7 +72,7 @@
                                 </a>
 </li>
 <li>
-<a href="../user_manual/user_manual_start.html" rel="prev">
+<a href="dev_history.html" rel="prev">
                                     Next <i class="fa fa-arrow-right"></i>
 </a>
 </li>
@@ -84,7 +87,8 @@
 <li><a href="#_2">ОС разработки</a></li>
 <li><a href="#ide">Языки, фреймворки, IDE</a></li>
 <li><a href="#_3">Инструмент документирования</a></li>
-<li><a href="#_5">Строка деплоя</a></li>
+<li><a href="#_5">Хранение кода</a></li>
+<li><a href="#_6">Строка деплоя</a></li>
 </ul>
 </div></div>
 <div class="col-md-9" role="main"><a class="md-content__icon pdf-download-btn" download href="../pdf/combined.pdf" title="Download"><i class="fa fas fa-download"></i><small> PDF</small></a>
@@ -103,14 +107,29 @@
 <h3 id="_3">Инструмент документирования</h3>
 <p>Документация пишется в MkDocs,
 генерится в 2 формата - статический сайт HTML-страниц и PDF.</p>
+<blockquote>
+<p>Благодаря этому инструментарию и методам
+<code>mkdocs build &amp;&amp; mkdocs serve</code> можно всегда 
+автоматически получать самую актуальную версию документации</p>
+</blockquote>
+<h4 id="uml">UML, схемы, иллюстрации</h4>
+<p>PlantUML...</p>
 <h4 id="_4">Временное размещение в веб</h4>
-<p>Для проверки доступа по сети сайт документации размещается
+<p>Для проверки доступа по сети сайт документации временно размещается
 по адресу <a href="https://valeriusgc.github.io/">valeriusgc.github.io/</a>.</p>
-<h3 id="_5">Строка деплоя</h3>
-<p>export PATH="$PATH:/usr/lib/jvm/java-11-openjdk-amd64/bin/java" \
-    &amp;&amp; export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64" \ 
-    &amp;&amp; ./build.sh \ 
-    &amp;&amp; ./start.sh</p></div>
+<p>Там же находится ссылка на актуальный PDF.</p>
+<h3 id="_5">Хранение кода</h3>
+<p>Код хранится в приватном репозитарии по адресу
+<a href="https://github.com/ValeriusGC/graph-editor">github.com/ValeriusGC/graph-editor</a></p>
+<h3 id="_6">Строка деплоя</h3>
+<p>При разработке следует регулярно запускать сборку, 
+создавая нужную среду окружения.
+Я делаю вот так:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">export PATH="$PATH:/usr/lib/jvm/java-11-openjdk-amd64/bin/java" \</span>
+<span class="err">    &amp;&amp; export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64" \ </span>
+<span class="err">    &amp;&amp; ./build.sh \ </span>
+<span class="err">    &amp;&amp; ./start.sh</span>
+</code></pre></div></div>
 </div>
 <footer class="col-md-12">
 <hr/>

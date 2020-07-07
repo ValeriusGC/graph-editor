@@ -6,7 +6,7 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>1. Кухня - Система 'ГРАФ'</title>
+<title>Menu view - Система 'ГРАФ'</title>
 <link href="../css/bootstrap-custom.min.css" rel="stylesheet"/>
 <link href="../css/font-awesome.min.css" rel="stylesheet"/>
 <link href="../css/base.css" rel="stylesheet"/>
@@ -56,26 +56,16 @@
 </li>
 </ul>
 </li>
-<li class="dropdown active">
+<li class="dropdown">
 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Руководство пользователя <b class="caret"></b></a>
 <ul class="dropdown-menu">
-<li class="active">
+<li>
 <a href="user_manual_start.html">1. Кухня</a>
 </li>
 </ul>
 </li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
-<li>
-<a href="../code_manual/dev_history.html" rel="next">
-<i class="fa fa-arrow-left"></i> Previous
-                                </a>
-</li>
-<li class="disabled">
-<a rel="prev">
-                                    Next <i class="fa fa-arrow-right"></i>
-</a>
-</li>
 </ul>
 </div>
 </div>
@@ -83,12 +73,45 @@
 <div class="container">
 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
 <ul class="nav bs-sidenav">
-<li class="main active"><a href="#_1">Руководство пользователя</a></li>
+<li class="main active"><a href="#_1">Меню "Вид"</a></li>
+<li><a href="#_2">Меню "Сетка"</a></li>
+<li><a href="#_3">Меню "Выравнивать по сетке"</a></li>
 </ul>
 </div></div>
 <div class="col-md-9" role="main"><a class="md-content__icon pdf-download-btn" download href="../pdf/combined.pdf" title="Download"><i class="fa fas fa-download"></i><small> PDF</small></a>
-<h2 id="_1">Руководство пользователя</h2>
-<p><a href="menu_view.html">Меню "Вид"</a></p></div>
+<h3 id="_1">Меню "Вид"</h3>
+<h4 id="_2">Меню "Сетка"</h4>
+<p>Включает / выключает отображение сетки на экране.</p>
+<table>
+<thead>
+<tr>
+<th align="center">без сетки</th>
+<th align="center">с сеткой</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="" src="../img/grid_no.png"/></td>
+<td align="center"><img alt="" src="../img/grid_yes.png"/></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_3">Меню "Выравнивать по сетке"</h4>
+<p>Автоматическое выравнивание узлов по линиям сетки при перемещении мышкой по схеме.</p>
+<table>
+<thead>
+<tr>
+<th align="center">без выравнивания</th>
+<th align="center">с выравниванием</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="" src="../img/grid_align_nope.png"/></td>
+<td align="center"><img alt="" src="../img/grid_align_yes.png"/></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <footer class="col-md-12">
 <hr/>

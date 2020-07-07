@@ -99,17 +99,11 @@ public class AndNodeSkin extends GNodeSkin {
 
         node.setType(AND_NODE_TYPE);
 
-        background.heightProperty().bind(border.heightProperty().subtract(border.strokeWidthProperty().multiply(2)));
-
-
         border.widthProperty().bind(getRoot().widthProperty());
         border.heightProperty().bind(getRoot().heightProperty());
 
-        background.setWidth(border.getWidth()+SIZE_AROUND_BORDER);
-        background.getStrokeDashArray().addAll(3.0);
 
         border.getStyleClass().setAll(STYLE_CLASS_BORDER);
-        background.getStyleClass().setAll(STYLE_CLASS_BORDER);
 
         border.addEventFilter(MouseEvent.MOUSE_DRAGGED, this::filterMouseDragged);
         border.setOnMouseDragEntered(mouseDragEvent -> {
@@ -117,6 +111,12 @@ public class AndNodeSkin extends GNodeSkin {
                 background.setWidth(border.getWidth()+SIZE_AROUND_BORDER);
             }
         });
+
+        background.setWidth(border.getWidth()+SIZE_AROUND_BORDER);
+        background.getStrokeDashArray().addAll(7.0);
+        background.heightProperty().bind(border.heightProperty().subtract(border.strokeWidthProperty().multiply(2)));
+        background.getStyleClass().setAll(STYLE_CLASS_BORDER);
+        background.addEventFilter(MouseEvent.MOUSE_DRAGGED, this::filterMouseDragged);
 
         getRoot().getChildren().addAll(border, pane);
         getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
@@ -304,12 +304,12 @@ public class AndNodeSkin extends GNodeSkin {
 
         if (selectionHalo.isVisible()) {
 
-            selectionHalo.setWidth(border.getWidth() + 2 * HALO_OFFSET);
-            selectionHalo.setHeight(border.getHeight() + 2 * HALO_OFFSET);
+            selectionHalo.setWidth(background.getWidth() + 2 * HALO_OFFSET);
+            selectionHalo.setHeight(background.getHeight() + 2 * HALO_OFFSET);
 
             final double cornerLength = 2 * HALO_CORNER_SIZE;
-            final double xGap = border.getWidth() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
-            final double yGap = border.getHeight() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
+            final double xGap = background.getWidth() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
+            final double yGap = background.getHeight() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
 
             selectionHalo.setStrokeDashOffset(HALO_CORNER_SIZE);
             selectionHalo.getStrokeDashArray().setAll(cornerLength, yGap, cornerLength, xGap);

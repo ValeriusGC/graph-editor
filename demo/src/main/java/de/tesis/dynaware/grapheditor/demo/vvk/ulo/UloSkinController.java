@@ -8,6 +8,7 @@ import de.tesis.dynaware.grapheditor.core.skins.defaults.DefaultNodeSkin;
 import de.tesis.dynaware.grapheditor.core.skins.defaults.DefaultTailSkin;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
 import de.tesis.dynaware.grapheditor.demo.customskins.AndNodeSkin;
+import de.tesis.dynaware.grapheditor.demo.customskins.AndWith3InputNodeSkin;
 import de.tesis.dynaware.grapheditor.demo.customskins.DefaultSkinController;
 import de.tesis.dynaware.grapheditor.demo.customskins.titled.TitledSkinConstants;
 import de.tesis.dynaware.grapheditor.demo.customskins.tree.TreeConnectionSkin;
@@ -132,7 +133,8 @@ public class UloSkinController extends DefaultSkinController {
                 skin = new UloTrQNodeSkin(node);
                 break;
             case UloSkinConstants.ULO_NODE_NEWNEW:
-                skin = new AndNodeSkin(node);
+                //skin = new AndNodeSkin(node);
+                skin = new AndWith3InputNodeSkin(node);
                 break;
             default:
                 skin = new DefaultNodeSkin(node);

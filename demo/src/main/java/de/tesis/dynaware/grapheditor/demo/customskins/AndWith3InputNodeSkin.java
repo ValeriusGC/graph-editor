@@ -6,22 +6,17 @@ package de.tesis.dynaware.grapheditor.demo.customskins;
 import de.tesis.dynaware.grapheditor.GConnectorSkin;
 import de.tesis.dynaware.grapheditor.GNodeSkin;
 import de.tesis.dynaware.grapheditor.core.connectors.DefaultConnectorTypes;
-import de.tesis.dynaware.grapheditor.demo.GraphEditorDemoOld;
-import de.tesis.dynaware.grapheditor.demo.GraphEditorException;
-import de.tesis.dynaware.grapheditor.demo.NodeProperties;
 import de.tesis.dynaware.grapheditor.demo.Property;
 import de.tesis.dynaware.grapheditor.model.GConnector;
 import de.tesis.dynaware.grapheditor.model.GNode;
 import de.tesis.dynaware.grapheditor.utils.GeometryUtils;
 import de.tesis.dynaware.grapheditor.utils.ResizableBox;
+import javafx.beans.Observable;
 import javafx.css.PseudoClass;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -30,18 +25,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * The default node skin. Uses a {@link ResizableBox}.
@@ -55,9 +51,9 @@ import java.util.List;
  * Connectors are evenly spaced along the sides of the node according to their type.
  * </p>
  */
-public class AndNodeSkin extends GNodeSkin {
+public class AndWith3InputNodeSkin extends GNodeSkin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AndNodeSkin.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AndWith3InputNodeSkin.class);
 
     public static final String AND_NODE_TYPE = "and-node";
 
@@ -96,12 +92,14 @@ public class AndNodeSkin extends GNodeSkin {
     private final Image and = new Image(is,30, 40, false, true);
     private final ImageView imageView = new ImageView(and);
 
+    private List<AndInputNodeSkin> skins = new ArrayList<>();
+
     /**
      * Creates a new default node skin instance.
      *
      * @param node the {@link GNode} the skin is being created for
      */
-    public AndNodeSkin(final GNode node) {
+    public AndWith3InputNodeSkin(final GNode node) {
 
         super(node);
 
@@ -126,37 +124,24 @@ public class AndNodeSkin extends GNodeSkin {
             }
         });
 
-        body.heightProperty().bind(border.heightProperty().subtract(2.0));
-        body.widthProperty().bind(border.widthProperty().divide(2.2));
-        body.setStyle(""
-                + "-fx-fill: null;"
-                + "-fx-stroke: red;"
-                + "-fx-stroke-width: 2;"
-        );
-        bodyPane.prefWidthProperty().bind(body.widthProperty());
-        bodyPane.maxWidthProperty().bind(body.widthProperty());
-        bodyPane.getChildren().add(body);
-        bodyPane.setOnMousePressed(event ->{
-            if (event.getButton() == MouseButton.SECONDARY) {
-                event.consume();
-                final double w = bodyPane.widthProperty().get();
-                final Alert alert = new Alert(AlertType.CONFIRMATION, "AndNodeSkin.BODY-PANE: " + w, ButtonType.OK);
-                alert.showAndWait();
-            }
-        });
-
-        final Font titleFont = Font.font("Verdana", FontWeight.BOLD, 24);
-        final Label l = new Label("&");
-        l.prefWidthProperty().bind(bodyPane.widthProperty());
-        l.maxWidthProperty().bind(bodyPane.widthProperty());
-        l.prefHeightProperty().bind(bodyPane.heightProperty());
-        l.maxHeightProperty().bind(bodyPane.heightProperty());
-        l.setFont(titleFont);
-        l.setAlignment(Pos.CENTER);
-        bodyPane.getChildren().add(l);
-
+        bodyPane.prefWidthProperty().bind(border.widthProperty().divide(2.2));
+        bodyPane.maxWidthProperty().bind(border.widthProperty().divide(2.2));
         borderPane.getChildren().add(bodyPane);
-        getRoot().getChildren().addAll(borderPane/*, bodyPane*//*, pane*/);
+
+        getRoot().getChildren().add(borderPane);
+
+        final VBox box = new VBox();
+        bodyPane.getChildren().add(box);
+        for(int i=0; i<3; ++i){
+            final StackPane pane = new StackPane();
+            pane.prefHeightProperty().bind(borderPane.heightProperty().divide(3.0));
+            pane.maxHeightProperty().bind(borderPane.heightProperty().divide(3.0));
+            pane.prefWidthProperty().bind(border.widthProperty().divide(2.2));
+            pane.maxWidthProperty().bind(border.widthProperty().divide(2.2));
+            box.getChildren().add(pane);
+            final AndInputNodeSkin skin = new AndInputNodeSkin(node, i, pane);
+        }
+
         getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
 
 

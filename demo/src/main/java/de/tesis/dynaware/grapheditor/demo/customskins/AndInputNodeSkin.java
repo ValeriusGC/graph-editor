@@ -6,22 +6,16 @@ package de.tesis.dynaware.grapheditor.demo.customskins;
 import de.tesis.dynaware.grapheditor.GConnectorSkin;
 import de.tesis.dynaware.grapheditor.GNodeSkin;
 import de.tesis.dynaware.grapheditor.core.connectors.DefaultConnectorTypes;
-import de.tesis.dynaware.grapheditor.demo.GraphEditorDemoOld;
-import de.tesis.dynaware.grapheditor.demo.GraphEditorException;
-import de.tesis.dynaware.grapheditor.demo.NodeProperties;
 import de.tesis.dynaware.grapheditor.demo.Property;
 import de.tesis.dynaware.grapheditor.model.GConnector;
 import de.tesis.dynaware.grapheditor.model.GNode;
 import de.tesis.dynaware.grapheditor.utils.GeometryUtils;
 import de.tesis.dynaware.grapheditor.utils.ResizableBox;
 import javafx.css.PseudoClass;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -34,32 +28,20 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The default node skin. Uses a {@link ResizableBox}.
- *
- * <p>
- * If a node uses this skin its connectors must have one of the 8 types defined in {@link DefaultConnectorTypes}. If a
- * connector does not have one of these types, it will be set to <b>left-input</b>.
- * </p>
- *
- * <p>
- * Connectors are evenly spaced along the sides of the node according to their type.
- * </p>
  */
-public class AndNodeSkin extends GNodeSkin {
+public class AndInputNodeSkin extends GNodeSkin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AndNodeSkin.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AndInputNodeSkin.class);
 
-    public static final String AND_NODE_TYPE = "and-node";
+    public static final String AND_INPUT_NODE_TYPE = "and-input-node";
 
     private static final String STYLE_CLASS_BORDER = "default-node-border";
     private static final String STYLE_CLASS_SELECTION_HALO = "default-node-selection-halo";
@@ -85,80 +67,49 @@ public class AndNodeSkin extends GNodeSkin {
     private final List<GConnectorSkin> leftConnectorSkins = new ArrayList<>();
 
     // Border and background are separated into 2 rectangles so they can have different effects applied to them.
-    private final Rectangle border = new Rectangle();
-    private final StackPane borderPane = new StackPane();
     private final Rectangle body = new Rectangle();
-    private final StackPane bodyPane = new StackPane();
-//    private final Rectangle background = new Rectangle();
-    //private final StackPane pane = new StackPane();
-    private final InputStream is = Property.class
-            .getResourceAsStream("/de/tesis/dynaware/grapheditor/demo/and.png");
-    private final Image and = new Image(is,30, 40, false, true);
-    private final ImageView imageView = new ImageView(and);
+
+    private final int position;
+    private final StackPane pane;
+
 
     /**
-     * Creates a new default node skin instance.
-     *
-     * @param node the {@link GNode} the skin is being created for
+     * Внутренний input-and-node
      */
-    public AndNodeSkin(final GNode node) {
-
+    public AndInputNodeSkin(final GNode node, final int position, final StackPane pane) {
         super(node);
+        this.position = position;
+        this.pane = pane;
 
         performChecks();
+        node.setType(AND_INPUT_NODE_TYPE);
 
-        node.setType(AND_NODE_TYPE);
-
-        border.widthProperty().bind(getRoot().widthProperty());
-        border.heightProperty().bind(getRoot().heightProperty());
-        border.getStrokeDashArray().addAll(7.0);
-        border.getStyleClass().setAll(STYLE_CLASS_BORDER);
-        borderPane.getChildren().add(border);
-        borderPane.setOnMousePressed(event ->{
-            if (event.getButton() == MouseButton.SECONDARY) {
-                event.consume();
-                final double w = borderPane.widthProperty().get();
-                final Alert alert = new Alert(AlertType.CONFIRMATION, "AndNodeSkin.BORDER-PANE: "+w, ButtonType.OK);
-                alert.showAndWait();
-//                if (alert.getResult() == ButtonType.YES) {
-//                    //do stuff
-//                }
-            }
-        });
-
-        body.heightProperty().bind(border.heightProperty().subtract(2.0));
-        body.widthProperty().bind(border.widthProperty().divide(2.2));
+        body.heightProperty().bind(pane.heightProperty().subtract(3.0));
+        body.widthProperty().bind(pane.widthProperty().subtract(3.0));
         body.setStyle(""
                 + "-fx-fill: null;"
                 + "-fx-stroke: red;"
                 + "-fx-stroke-width: 2;"
         );
-        bodyPane.prefWidthProperty().bind(body.widthProperty());
-        bodyPane.maxWidthProperty().bind(body.widthProperty());
-        bodyPane.getChildren().add(body);
-        bodyPane.setOnMousePressed(event ->{
+        pane.getChildren().add(body);
+        pane.setOnMousePressed(event ->{
             if (event.getButton() == MouseButton.SECONDARY) {
                 event.consume();
-                final double w = bodyPane.widthProperty().get();
-                final Alert alert = new Alert(AlertType.CONFIRMATION, "AndNodeSkin.BODY-PANE: " + w, ButtonType.OK);
+                final Alert alert = new Alert(AlertType.CONFIRMATION, "BODY-PANE: " + position, ButtonType.OK);
                 alert.showAndWait();
             }
         });
 
         final Font titleFont = Font.font("Verdana", FontWeight.BOLD, 24);
-        final Label l = new Label("&");
-        l.prefWidthProperty().bind(bodyPane.widthProperty());
-        l.maxWidthProperty().bind(bodyPane.widthProperty());
-        l.prefHeightProperty().bind(bodyPane.heightProperty());
-        l.maxHeightProperty().bind(bodyPane.heightProperty());
+        final Label l = new Label(""+position);
+        l.prefWidthProperty().bind(pane.widthProperty());
+        l.maxWidthProperty().bind(pane.widthProperty());
+        l.prefHeightProperty().bind(pane.heightProperty());
+        l.maxHeightProperty().bind(pane.heightProperty());
         l.setFont(titleFont);
         l.setAlignment(Pos.CENTER);
-        bodyPane.getChildren().add(l);
-
-        borderPane.getChildren().add(bodyPane);
-        getRoot().getChildren().addAll(borderPane/*, bodyPane*//*, pane*/);
+        pane.getChildren().add(l);
         getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
-
 
         addSelectionHalo();
     }
@@ -310,38 +261,16 @@ public class AndNodeSkin extends GNodeSkin {
      */
     private void layoutSelectionHalo() {
 
-        if (selectionHalo.isVisible()) {
-
-            selectionHalo.setWidth(border.getWidth() + 2 * HALO_OFFSET);
-            selectionHalo.setHeight(border.getHeight() + 2 * HALO_OFFSET);
-
-            final double cornerLength = 2 * HALO_CORNER_SIZE;
-            final double xGap = border.getWidth() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
-            final double yGap = border.getHeight() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
-
-            selectionHalo.setStrokeDashOffset(HALO_CORNER_SIZE);
-            selectionHalo.getStrokeDashArray().setAll(cornerLength, yGap, cornerLength, xGap);
-        }
     }
 
     @Override
     protected void selectionChanged(boolean isSelected) {
-        if (isSelected) {
-            selectionHalo.setVisible(true);
-            layoutSelectionHalo();
-            border.pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, true);
-            getRoot().toFront();
-        } else {
-            selectionHalo.setVisible(false);
-            border.pseudoClassStateChanged(PSEUDO_CLASS_SELECTED, false);
-        }
     }
 
     /**
      * Removes all connectors from the list of children.
      */
     private void removeAllConnectors() {
-
         topConnectorSkins.stream().forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
         rightConnectorSkins.stream().forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));
         bottomConnectorSkins.stream().forEach(skin -> getRoot().getChildren().remove(skin.getRoot()));

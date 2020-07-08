@@ -123,6 +123,11 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
 	protected double y = Y_EDEFAULT;
 
 	/**
+	 * Не знаю, почему значения нечетные исходно, но приму на вооружение
+	 */
+	private static final double INIT_SIZE = 301.0;
+
+	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +135,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double WIDTH_EDEFAULT = 151.0;
+	protected static final double WIDTH_EDEFAULT = INIT_SIZE;
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
@@ -150,7 +155,7 @@ public class GNodeImpl extends MinimalEObjectImpl.Container implements GNode {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double HEIGHT_EDEFAULT = 351.0;
+	protected static final double HEIGHT_EDEFAULT = INIT_SIZE;
 
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.

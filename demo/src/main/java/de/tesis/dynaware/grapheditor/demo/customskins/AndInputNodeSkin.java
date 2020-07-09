@@ -48,16 +48,9 @@ public class AndInputNodeSkin extends GNodeSkin {
 
     private static final PseudoClass PSEUDO_CLASS_SELECTED = PseudoClass.getPseudoClass("selected");
 
-    private static final double HALO_OFFSET = 5;
-    private static final double HALO_CORNER_SIZE = 10;
-
     private static final double MINOR_POSITIVE_OFFSET = 2;
     private static final double MINOR_NEGATIVE_OFFSET = -3;
 
-    private static final double MIN_WIDTH = 101.0;
-    private static final double MIN_HEIGHT = 101.0;
-
-    private static final double SIZE_AROUND_BORDER = 358;
 
     private final Rectangle selectionHalo = new Rectangle();
 
@@ -86,9 +79,10 @@ public class AndInputNodeSkin extends GNodeSkin {
 
         body.heightProperty().bind(pane.heightProperty().subtract(3.0));
         body.widthProperty().bind(pane.widthProperty().subtract(3.0));
+        body.getStyleClass().setAll(STYLE_CLASS_BORDER);
         body.setStyle(""
                 + "-fx-fill: null;"
-                + "-fx-stroke: red;"
+                + "-fx-stroke: green;"
                 + "-fx-stroke-width: 2;"
         );
         pane.getChildren().add(body);
@@ -100,18 +94,19 @@ public class AndInputNodeSkin extends GNodeSkin {
             }
         });
 
-        final Font titleFont = Font.font("Verdana", FontWeight.BOLD, 24);
-        final Label l = new Label(""+position);
-        l.prefWidthProperty().bind(pane.widthProperty());
-        l.maxWidthProperty().bind(pane.widthProperty());
-        l.prefHeightProperty().bind(pane.heightProperty());
-        l.maxHeightProperty().bind(pane.heightProperty());
-        l.setFont(titleFont);
-        l.setAlignment(Pos.CENTER);
-        pane.getChildren().add(l);
-        getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
+//        final Font titleFont = Font.font("Verdana", FontWeight.BOLD, 24);
+//        final Label l = new Label(""+position);
+//        l.prefWidthProperty().bind(pane.widthProperty());
+//        l.maxWidthProperty().bind(pane.widthProperty());
+//        l.prefHeightProperty().bind(pane.heightProperty());
+//        l.maxHeightProperty().bind(pane.heightProperty());
+//        l.setFont(titleFont);
+//        l.setAlignment(Pos.CENTER);
+//        pane.getChildren().add(l);
 
-        addSelectionHalo();
+//        getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
+
+//        addSelectionHalo();
     }
 
     @Override
@@ -243,17 +238,17 @@ public class AndInputNodeSkin extends GNodeSkin {
      * Adds the selection halo and initializes some of its values.
      */
     private void addSelectionHalo() {
-
-        getRoot().getChildren().add(selectionHalo);
-
-        selectionHalo.setManaged(false);
-        selectionHalo.setMouseTransparent(false);
-        selectionHalo.setVisible(false);
-
-        selectionHalo.setLayoutX(-HALO_OFFSET);
-        selectionHalo.setLayoutY(-HALO_OFFSET);
-
-        selectionHalo.getStyleClass().add(STYLE_CLASS_SELECTION_HALO);
+//
+//        getRoot().getChildren().add(selectionHalo);
+//
+//        selectionHalo.setManaged(false);
+//        selectionHalo.setMouseTransparent(false);
+//        selectionHalo.setVisible(false);
+//
+//        selectionHalo.setLayoutX(-HALO_OFFSET);
+//        selectionHalo.setLayoutY(-HALO_OFFSET);
+//
+//        selectionHalo.getStyleClass().add(STYLE_CLASS_SELECTION_HALO);
     }
 
     /**

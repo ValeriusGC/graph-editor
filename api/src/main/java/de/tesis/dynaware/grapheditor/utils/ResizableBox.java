@@ -409,8 +409,8 @@ public class ResizableBox extends DraggableBox
 
         final boolean isNorth = y < DEFAULT_RESIZE_BORDER_TOLERANCE;
         final boolean isSouth = y > height - DEFAULT_RESIZE_BORDER_TOLERANCE;
-        final boolean isEast = x > width - DEFAULT_RESIZE_BORDER_TOLERANCE;
-        final boolean isWest = x < DEFAULT_RESIZE_BORDER_TOLERANCE;
+        final boolean isEast = false; // x > width - DEFAULT_RESIZE_BORDER_TOLERANCE;
+        final boolean isWest = false; // x < DEFAULT_RESIZE_BORDER_TOLERANCE;
 
         if (isNorth && isEast) {
             return RectangleMouseRegion.NORTHEAST;

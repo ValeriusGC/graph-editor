@@ -107,11 +107,13 @@ public class AndWith3InputNodeSkin extends GNodeSkin {
 
         node.setType(AND_NODE_TYPE);
 
-        border.widthProperty().bind(getRoot().widthProperty());
-        border.heightProperty().bind(getRoot().heightProperty());
-        border.getStrokeDashArray().addAll(7.0);
-        border.getStyleClass().setAll(STYLE_CLASS_BORDER);
-        borderPane.getChildren().add(border);
+        getRoot().getChildren().add(borderPane);
+        borderPane.setStyle("" +
+                "-fx-border-color: black;" +
+//                "-fx-stroke: darkslategrey;" +
+//                "-fx-stroke-dash-array: 8 4;" +
+//                "-fx-stroke-dash-offset: 4;" +
+                "");
         borderPane.setOnMousePressed(event ->{
             if (event.getButton() == MouseButton.SECONDARY) {
                 event.consume();
@@ -124,26 +126,44 @@ public class AndWith3InputNodeSkin extends GNodeSkin {
             }
         });
 
-        bodyPane.prefWidthProperty().bind(border.widthProperty().divide(2.2));
-        bodyPane.maxWidthProperty().bind(border.widthProperty().divide(2.2));
-        borderPane.getChildren().add(bodyPane);
+        //
+//        borderPane.getChildren().add(border);
+//        border.widthProperty().bind(borderPane.widthProperty());
+//        border.heightProperty().bind(borderPane.heightProperty());
+//        border.getStrokeDashArray().addAll(7.0);
+//        border.getStyleClass().setAll(STYLE_CLASS_BORDER);
 
-        getRoot().getChildren().add(borderPane);
+//        borderPane.getChildren().add(bodyPane);
+//        bodyPane.prefWidthProperty().bind(borderPane.widthProperty().divide(2.2));
+//        bodyPane.maxWidthProperty().bind(borderPane.widthProperty().divide(2.2));
+////        bodyPane.setStyle(""
+////                + "-fx-fill: null;"
+////                + "-fx-stroke: green;"
+////                + "-fx-stroke-width: 2;"
+////        );
+//        final Rectangle rect = new Rectangle();
+//        rect.setStyle(""
+//                + "-fx-fill: null;"
+//                + "-fx-stroke: green;"
+//                + "-fx-stroke-width: 2;"
+//        );
+//        rect.widthProperty().bind(bodyPane.widthProperty().subtract(1.0));
+//        rect.heightProperty().bind(bodyPane.heightProperty().subtract(1.0));
+//        bodyPane.getChildren().add(rect);
 
-        final VBox box = new VBox();
-        bodyPane.getChildren().add(box);
-        for(int i=0; i<3; ++i){
-            final StackPane pane = new StackPane();
-            pane.prefHeightProperty().bind(borderPane.heightProperty().divide(3.0));
-            pane.maxHeightProperty().bind(borderPane.heightProperty().divide(3.0));
-            pane.prefWidthProperty().bind(border.widthProperty().divide(2.2));
-            pane.maxWidthProperty().bind(border.widthProperty().divide(2.2));
-            box.getChildren().add(pane);
-            final AndInputNodeSkin skin = new AndInputNodeSkin(node, i, pane);
-        }
+//        final VBox box = new VBox();
+//        bodyPane.getChildren().add(box);
+//        for(int i=0; i<3; ++i){
+//            final StackPane pane = new StackPane();
+//            pane.prefHeightProperty().bind(borderPane.heightProperty().divide(3.0));
+//            pane.maxHeightProperty().bind(borderPane.heightProperty().divide(3.0));
+//            pane.prefWidthProperty().bind(border.widthProperty().divide(2.2));
+//            pane.maxWidthProperty().bind(border.widthProperty().divide(2.2));
+//            box.getChildren().add(pane);
+//            final AndInputNodeSkin skin = new AndInputNodeSkin(node, i, pane);
+//        }
 
         getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
-
 
         addSelectionHalo();
     }
@@ -297,12 +317,12 @@ public class AndWith3InputNodeSkin extends GNodeSkin {
 
         if (selectionHalo.isVisible()) {
 
-            selectionHalo.setWidth(border.getWidth() + 2 * HALO_OFFSET);
-            selectionHalo.setHeight(border.getHeight() + 2 * HALO_OFFSET);
+            selectionHalo.setWidth(borderPane.getWidth() + 2 * HALO_OFFSET);
+            selectionHalo.setHeight(borderPane.getHeight() + 2 * HALO_OFFSET);
 
             final double cornerLength = 2 * HALO_CORNER_SIZE;
-            final double xGap = border.getWidth() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
-            final double yGap = border.getHeight() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
+            final double xGap = borderPane.getWidth() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
+            final double yGap = borderPane.getHeight() - 2 * HALO_CORNER_SIZE + 2 * HALO_OFFSET;
 
             selectionHalo.setStrokeDashOffset(HALO_CORNER_SIZE);
             selectionHalo.getStrokeDashArray().setAll(cornerLength, yGap, cornerLength, xGap);

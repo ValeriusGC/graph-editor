@@ -94,15 +94,15 @@ public class AndInputNodeSkin extends GNodeSkin {
             }
         });
 
-//        final Font titleFont = Font.font("Verdana", FontWeight.BOLD, 24);
-//        final Label l = new Label(""+position);
-//        l.prefWidthProperty().bind(pane.widthProperty());
-//        l.maxWidthProperty().bind(pane.widthProperty());
-//        l.prefHeightProperty().bind(pane.heightProperty());
-//        l.maxHeightProperty().bind(pane.heightProperty());
-//        l.setFont(titleFont);
-//        l.setAlignment(Pos.CENTER);
-//        pane.getChildren().add(l);
+        final Font titleFont = Font.font("Verdana", FontWeight.BOLD, 24);
+        final Label l = new Label(""+position);
+        l.prefWidthProperty().bind(pane.widthProperty());
+        l.maxWidthProperty().bind(pane.widthProperty());
+        l.prefHeightProperty().bind(pane.heightProperty());
+        l.maxHeightProperty().bind(pane.heightProperty());
+        l.setFont(titleFont);
+        l.setAlignment(Pos.CENTER);
+        pane.getChildren().add(l);
 
 //        getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
 

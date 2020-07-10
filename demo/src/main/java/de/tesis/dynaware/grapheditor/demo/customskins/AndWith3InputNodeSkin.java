@@ -133,14 +133,15 @@ public class AndWith3InputNodeSkin extends GNodeSkin {
 //        border.getStrokeDashArray().addAll(7.0);
 //        border.getStyleClass().setAll(STYLE_CLASS_BORDER);
 
-//        borderPane.getChildren().add(bodyPane);
-//        bodyPane.prefWidthProperty().bind(borderPane.widthProperty().divide(2.2));
-//        bodyPane.maxWidthProperty().bind(borderPane.widthProperty().divide(2.2));
-////        bodyPane.setStyle(""
-////                + "-fx-fill: null;"
-////                + "-fx-stroke: green;"
-////                + "-fx-stroke-width: 2;"
-////        );
+        borderPane.getChildren().add(bodyPane);
+        bodyPane.prefWidthProperty().bind(borderPane.widthProperty().divide(2.2));
+        bodyPane.maxWidthProperty().bind(borderPane.widthProperty().divide(2.2));
+        bodyPane.setStyle("" +
+                "-fx-border-color: red;"
+//                + "-fx-fill: null;"
+//                + "-fx-stroke: green;"
+//                + "-fx-stroke-width: 2;"
+        );
 //        final Rectangle rect = new Rectangle();
 //        rect.setStyle(""
 //                + "-fx-fill: null;"
@@ -151,17 +152,20 @@ public class AndWith3InputNodeSkin extends GNodeSkin {
 //        rect.heightProperty().bind(bodyPane.heightProperty().subtract(1.0));
 //        bodyPane.getChildren().add(rect);
 
-//        final VBox box = new VBox();
-//        bodyPane.getChildren().add(box);
-//        for(int i=0; i<3; ++i){
-//            final StackPane pane = new StackPane();
-//            pane.prefHeightProperty().bind(borderPane.heightProperty().divide(3.0));
-//            pane.maxHeightProperty().bind(borderPane.heightProperty().divide(3.0));
+        final VBox box = new VBox();
+        bodyPane.getChildren().add(box);
+        for(int i=0; i<3; ++i){
+            final StackPane pane = new StackPane();
+            pane.prefHeightProperty().bind(bodyPane.heightProperty().divide(3.0));
+            pane.maxHeightProperty().bind(bodyPane.heightProperty().divide(3.0));
 //            pane.prefWidthProperty().bind(border.widthProperty().divide(2.2));
 //            pane.maxWidthProperty().bind(border.widthProperty().divide(2.2));
-//            box.getChildren().add(pane);
-//            final AndInputNodeSkin skin = new AndInputNodeSkin(node, i, pane);
-//        }
+            pane.setStyle("" +
+                            "-fx-border-color: blue;"
+            );
+            box.getChildren().add(pane);
+            final AndInputNodeSkin skin = new AndInputNodeSkin(node, i, pane);
+        }
 
         getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);
 

@@ -154,17 +154,47 @@ public class AndWith3InputNodeSkin extends GNodeSkin {
 
         final VBox box = new VBox();
         bodyPane.getChildren().add(box);
+        final double [] arr = {2,4,4};
         for(int i=0; i<3; ++i){
             final StackPane pane = new StackPane();
-            pane.prefHeightProperty().bind(bodyPane.heightProperty().divide(3.0));
-            pane.maxHeightProperty().bind(bodyPane.heightProperty().divide(3.0));
+            double k = (i+1) * 2D;
+            pane.prefHeightProperty().bind(bodyPane.heightProperty().divide(arr[i]));
+            pane.maxHeightProperty().bind(bodyPane.heightProperty().divide(arr[i]));
 //            pane.prefWidthProperty().bind(border.widthProperty().divide(2.2));
 //            pane.maxWidthProperty().bind(border.widthProperty().divide(2.2));
+
+
             pane.setStyle("" +
-                            "-fx-border-color: blue;"
+                            "-fx-stroke: darkslategrey;" +
+                            "-fx-stroke-type: inside;" +
+                            "-fx-border-color: red;" +
+                            "-fx-background-color: #2f4f4f;" +
+                            "-fx-border-width: 14;" +
+                    ""
             );
             box.getChildren().add(pane);
-            final AndInputNodeSkin skin = new AndInputNodeSkin(node, i, pane);
+//            final AndInputNodeSkin skin = new AndInputNodeSkin(node, i, pane);
+
+//            final Rectangle r = new Rectangle();
+//            r.heightProperty().bind(pane.heightProperty());
+//            r.widthProperty().bind(pane.widthProperty());
+//            r.setStyle(""
+//                    + "-fx-fill: red;"
+//                    + "-fx-stroke: green;"
+//                    + "-fx-stroke-width: 2;"
+//            );
+//            pane.getChildren().add(r);
+
+            final Font titleFont = Font.font("Verdana", FontWeight.BOLD, 24);
+            final Label l = new Label(""+i);
+            l.prefWidthProperty().bind(pane.widthProperty());
+            l.maxWidthProperty().bind(pane.widthProperty());
+            l.prefHeightProperty().bind(pane.heightProperty());
+            l.maxHeightProperty().bind(pane.heightProperty());
+            l.setFont(titleFont);
+            l.setAlignment(Pos.CENTER);
+            pane.getChildren().add(l);
+
         }
 
         getRoot().setMinSize(MIN_WIDTH, MIN_HEIGHT);

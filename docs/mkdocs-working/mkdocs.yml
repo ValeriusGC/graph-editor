@@ -1,0 +1,15 @@
+site_name: Разработка системы 'ГРАФ'
+theme: 'mkdocs'
+#theme: 'readthedocs'
+plugins:
+  - mkpdfs
+markdown_extensions:
+  - codehilite
+  - markdown.extensions.admonition
+use_directory_urls: false
+site_description: Открытая документация для ГРАФ - Графического Редактора Алгоритмов и Функций
+copyright: В.Куликов, для НПП "ЭиС", 2020
+nav:
+  - 'Главная': 'index.md'
+  - 'Этапы':
+    - 'Разработка архитектуры редактора': 'step_01.md'

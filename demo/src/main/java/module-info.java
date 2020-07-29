@@ -16,6 +16,7 @@ module fx.graph.editor.demo
     requires io.reactivex.rxjava2;
     requires kotlinx.coroutines.rx2;
     requires json.simple;
+    requires org.controlsfx.controls;
 
     exports de.tesis.dynaware.grapheditor.demo to javafx.graphics, javafx.fxml;
     opens de.tesis.dynaware.grapheditor.demo to javafx.fxml, javafx.base;

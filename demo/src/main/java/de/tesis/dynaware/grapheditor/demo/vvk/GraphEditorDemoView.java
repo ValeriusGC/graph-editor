@@ -1,11 +1,13 @@
 package de.tesis.dynaware.grapheditor.demo.vvk;
 
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
+import de.tesis.dynaware.grapheditor.core.vvk.GrafModel;
 import de.tesis.dynaware.grapheditor.demo.utils.AwesomeIcon;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import org.controlsfx.control.StatusBar;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
@@ -59,7 +61,9 @@ public class GraphEditorDemoView implements IView {
     public Parent vbox() {
         final VBox b = new VBox();
         b.fillWidthProperty().setValue(true);
-        b.getChildren().addAll(menuBar(), container);
+        StatusBar statusBar = new StatusBar();
+        statusBar.setText("v: " + GrafModel.State.appVersion);
+        b.getChildren().addAll(menuBar(), container, statusBar);
         VBox.setVgrow(container, Priority.ALWAYS);
         return b;
     }

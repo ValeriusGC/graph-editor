@@ -13,7 +13,7 @@ public class GrafModel {
         public static final NodeModels nodeModels;
         public static final ModelNodes modelNodes;
         static {
-            appVersion = String.format("%d.%d.%d", 0,1,236);
+            appVersion = String.format("%d.%d.%d", 0,1,237);
             stateName = String.format("%d", System.currentTimeMillis());
             nodeModels = new NodeModels();
             modelNodes = new ModelNodes();

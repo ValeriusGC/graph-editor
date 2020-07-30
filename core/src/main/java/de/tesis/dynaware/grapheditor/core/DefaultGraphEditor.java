@@ -139,6 +139,7 @@ public class DefaultGraphEditor implements GraphEditor
     @Override
     public void reload()
     {
+        mModelProperty.get().bump();
         mController.process();
     }
 

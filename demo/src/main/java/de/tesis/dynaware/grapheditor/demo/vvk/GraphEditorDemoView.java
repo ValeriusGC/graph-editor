@@ -84,9 +84,9 @@ public class GraphEditorDemoView implements IView {
         //save.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+S"));
         file.getItems().add(save);
 
-        MenuItem clear = new MenuItem("Очистить все");
-        clear.setOnAction(v -> presenter.clearScheme());
-        file.getItems().add(clear);
+//        MenuItem clear = new MenuItem("Очистить все");
+//        clear.setOnAction(v -> presenter.clearScheme());
+//        file.getItems().add(clear);
 //        item1.setOnAction(a -> ctrl.load());
 
         SeparatorMenuItem separator = new SeparatorMenuItem();

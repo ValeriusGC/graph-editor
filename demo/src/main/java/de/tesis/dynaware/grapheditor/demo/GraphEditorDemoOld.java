@@ -6,6 +6,7 @@ package de.tesis.dynaware.grapheditor.demo;
 import java.net.URL;
 
 import de.tesis.dynaware.grapheditor.GraphEditor;
+import de.tesis.dynaware.grapheditor.core.vvk.GrafModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +21,7 @@ public class GraphEditorDemoOld extends Application {
 
     public static Stage primary;
 
-    private static final String APPLICATION_TITLE = "Graph Editor Demo"; //$NON-NLS-1$
+//    private static final String APPLICATION_TITLE = "ГРАФ"; //$NON-NLS-1$
     private static final String DEMO_STYLESHEET = "demo.css"; //$NON-NLS-1$
     private static final String TREE_SKIN_STYLESHEET = "treeskins.css"; //$NON-NLS-1$
     private static final String TITLED_SKIN_STYLESHEET = "titledskins.css"; //$NON-NLS-1$
@@ -43,7 +44,7 @@ public class GraphEditorDemoOld extends Application {
         Font.loadFont(getClass().getResource(FONT_AWESOME).toExternalForm(), 12);
 
         stage.setScene(scene);
-        stage.setTitle(APPLICATION_TITLE);
+//        stage.setTitle("" + APPLICATION_TITLE + " - v." + GrafModel.State.appVersion);
 
         stage.show();
     }

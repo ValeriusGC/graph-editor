@@ -62,7 +62,7 @@ public class GraphEditorDemoView implements IView {
         final VBox b = new VBox();
         b.fillWidthProperty().setValue(true);
         StatusBar statusBar = new StatusBar();
-        statusBar.setText("v: " + GrafModel.State.appVersion);
+        //statusBar.setText("v: " + GrafModel.State.appVersion);
         b.getChildren().addAll(menuBar(), container, statusBar);
         VBox.setVgrow(container, Priority.ALWAYS);
         return b;

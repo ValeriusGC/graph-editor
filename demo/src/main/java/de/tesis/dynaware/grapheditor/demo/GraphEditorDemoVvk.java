@@ -5,6 +5,7 @@ package de.tesis.dynaware.grapheditor.demo;
 
 import de.tesis.dynaware.grapheditor.GraphEditor;
 import de.tesis.dynaware.grapheditor.core.view.GraphEditorContainer;
+import de.tesis.dynaware.grapheditor.core.vvk.GrafModel;
 import de.tesis.dynaware.grapheditor.demo.utils.AwesomeIcon;
 import de.tesis.dynaware.grapheditor.demo.vvk.*;
 import io.reactivex.disposables.Disposable;
@@ -27,7 +28,7 @@ import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.sayHelloSingle;
  */
 public class GraphEditorDemoVvk extends Application {
 
-    private static final String APPLICATION_TITLE = "Graph Editor Demo"; //$NON-NLS-1$
+    private static final String APPLICATION_TITLE = "ГРАФ"; //$NON-NLS-1$
     private static final String DEMO_STYLESHEET = "demo.css"; //$NON-NLS-1$
     private static final String TREE_SKIN_STYLESHEET = "treeskins.css"; //$NON-NLS-1$
     private static final String TITLED_SKIN_STYLESHEET = "titledskins.css"; //$NON-NLS-1$
@@ -68,7 +69,7 @@ public class GraphEditorDemoVvk extends Application {
         Font.loadFont(getClass().getResource(FONT_AWESOME).toExternalForm(), 12);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle(APPLICATION_TITLE);
+        primaryStage.setTitle("" + APPLICATION_TITLE + " - v." + GrafModel.State.appVersion);
         primaryStage.show();
     }
 

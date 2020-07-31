@@ -19,6 +19,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.f;
 import static de.tesis.dynaware.grapheditor.demo.vvk.My_kotKt.sayHelloSingle;
@@ -57,7 +59,6 @@ public class GraphEditorDemoVvk extends Application {
         model = new GraphEditorDemoModel();
         presenter = new GraphEditorDemoPresenter(model);
         view = new GraphEditorDemoView(presenter);
-
 
         Scene scene = new Scene(view.getMain(), 500, 400);
         final String f = getClass().getResource(DEMO_STYLESHEET).toExternalForm();

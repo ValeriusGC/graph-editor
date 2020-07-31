@@ -428,7 +428,7 @@ public class Commands
      * @param model a {@link GModel} instance
      * @return the {@link EditingDomain} associated to this model instance
      */
-    private static EditingDomain getEditingDomain(final GModel model)
+    public static EditingDomain getEditingDomain(final GModel model)
     {
         final EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(model);
 

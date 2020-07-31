@@ -76,6 +76,7 @@ public class DefaultSkinController implements SkinController {
         leftInput.setType(DefaultConnectorTypes.LEFT_INPUT);
 
         Commands.addNode(graphEditor.getModel(), node);
+
     }
 
     /**

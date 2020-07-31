@@ -1,6 +1,7 @@
 package de.tesis.dynaware.grapheditor.demo.vvk;
 
 import de.tesis.dynaware.grapheditor.GraphEditor;
+import org.eclipse.emf.common.command.CommandStack;
 
 public interface IPresenter {
     void setView(IView view);
@@ -26,4 +27,5 @@ public interface IPresenter {
     //
     void delete();
     void nodeSelectionChanged(boolean isSelected);
+
 }

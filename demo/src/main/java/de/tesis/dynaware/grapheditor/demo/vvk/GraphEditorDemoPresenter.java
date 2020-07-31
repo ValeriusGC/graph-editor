@@ -20,6 +20,8 @@ import io.reactivex.disposables.Disposable;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.SetChangeListener;
 import javafx.geometry.Side;
 import javafx.scene.control.Alert;
@@ -28,6 +30,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
 import javafx.stage.WindowEvent;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +80,17 @@ public class GraphEditorDemoPresenter implements IPresenter {
      * Called by JavaFX when FXML is loaded.
      */
     public void initialize(GraphEditorContainer cnt) {
+
+        graphEditor.modelProperty().addListener(new ChangeListener<GModel>() {
+            @Override
+            public void changed(ObservableValue<? extends GModel> w, GModel o, GModel n) {
+                System.out.println("GraphEditorDemoPresenter.changed");
+                Commands.getEditingDomain(n).getCommandStack().addCommandStackListener(eventObject -> {
+                    view.onCommandStackChanged(Commands.getEditingDomain(n).getCommandStack());
+                });
+
+            }
+        });
 
         final GModel model = GraphFactory.eINSTANCE.createGModel();
         graphEditor.getView().getStyleClass().add(STYLE_CLASS_TITLED_SKINS);
@@ -148,6 +163,7 @@ public class GraphEditorDemoPresenter implements IPresenter {
     public void setView(IView view) {
         this.view = view;
         initialize(view.getContainer());
+
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
 
+import de.tesis.dynaware.grapheditor.Commands;
 import de.tesis.dynaware.grapheditor.core.vvk.GrafModel;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -260,7 +261,10 @@ public class GraphEditorPersistence {
 
             final GModel model = (GModel) resource.getContents().get(0);
             graphEditor.setModel(model);
+
         }
+
+
 
         initialDirectory = file.getParentFile();
     }

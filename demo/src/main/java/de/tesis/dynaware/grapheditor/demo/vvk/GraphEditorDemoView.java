@@ -13,14 +13,16 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import org.eclipse.emf.common.command.CommandStack;
 
 public class GraphEditorDemoView implements IView {
 
     IPresenter presenter;
     GraphEditorContainer container;
-
-
     private AnchorPane main;
+
+    private MenuItem undo;
+    private MenuItem redo;
 
     public GraphEditorDemoView(IPresenter presenter) {
         this.presenter = presenter;
@@ -99,13 +101,15 @@ public class GraphEditorDemoView implements IView {
 
         //
         Menu editor = new Menu("Редактор");
-        MenuItem undo = new MenuItem("Отмена");
+        undo = new MenuItem("Отмена");
         undo.setOnAction(v -> presenter.undo());
         undo.setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
+        undo.disableProperty().setValue(true);
         editor.getItems().add(undo);
-        MenuItem redo = new MenuItem("Повтор");
+        redo = new MenuItem("Повтор");
         redo.setOnAction(v -> presenter.redo());
         redo.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+Z"));
+        redo.disableProperty().setValue(true);
         editor.getItems().add(redo);
 
         MenuItem delete = new MenuItem("Удалить");
@@ -206,5 +210,11 @@ public class GraphEditorDemoView implements IView {
         if (addOutputConnector != null) {
             addOutputConnector.setDisable(!isSelected);
         }
+    }
+
+    @Override
+    public void onCommandStackChanged(CommandStack stack) {
+        redo.disableProperty().setValue(!stack.canRedo());
+        undo.disableProperty().setValue(!stack.canUndo());
     }
 }

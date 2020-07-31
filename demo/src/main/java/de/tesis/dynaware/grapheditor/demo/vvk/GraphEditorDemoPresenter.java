@@ -81,16 +81,9 @@ public class GraphEditorDemoPresenter implements IPresenter {
      */
     public void initialize(GraphEditorContainer cnt) {
 
-        graphEditor.modelProperty().addListener(new ChangeListener<GModel>() {
-            @Override
-            public void changed(ObservableValue<? extends GModel> w, GModel o, GModel n) {
-                System.out.println("GraphEditorDemoPresenter.changed");
-                Commands.getEditingDomain(n).getCommandStack().addCommandStackListener(eventObject -> {
-                    view.onCommandStackChanged(Commands.getEditingDomain(n).getCommandStack());
-                });
-
-            }
-        });
+        graphEditor.modelProperty().addListener((w, o, n) -> Commands.getEditingDomain(n).getCommandStack().addCommandStackListener(eventObject -> {
+            view.onCommandStackChanged(Commands.getEditingDomain(n).getCommandStack());
+        }));
 
         final GModel model = GraphFactory.eINSTANCE.createGModel();
         graphEditor.getView().getStyleClass().add(STYLE_CLASS_TITLED_SKINS);
